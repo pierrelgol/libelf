@@ -1,7 +1,5 @@
 const std = @import("std");
-const c = @cImport({
-    @cInclude("elf.h");
-});
+const elf = @import("elf.zig");
 const print = std.debug.print;
 const ArrayList = std.ArrayListUnmanaged;
 const Allocator = std.mem.Allocator;
