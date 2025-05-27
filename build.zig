@@ -59,4 +59,20 @@ pub fn build(b: *std.Build) void {
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&run_lib_unit_tests.step);
     test_step.dependOn(&run_exe_unit_tests.step);
+
+    const check_step = b.step("check", "zls helper");
+
+    const lib_check = b.addLibrary(.{
+        .linkage = .static,
+        .name = "elf",
+        .root_module = lib_mod,
+    });
+
+    const exe_check = b.addExecutable(.{
+        .name = "app",
+        .root_module = exe_mod,
+    });
+
+    check_step.dependOn(&lib_check.step);
+    check_step.dependOn(&exe_check.step);
 }
