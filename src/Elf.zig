@@ -1,7 +1,11 @@
 const std = @import("std");
+const c = @cImport({
+    @cInclude("elf.h");
+});
 const print = std.debug.print;
-const ArrayList = std.ArrayList;
+const ArrayList = std.ArrayListUnmanaged;
 const Allocator = std.mem.Allocator;
+const HashMap = std.AutoArrayHashMapUnmanaged;
 const builtin = std.builtin;
 pub const Elf = @This();
 
@@ -44,7 +48,7 @@ pub const Endian = enum(u8) {
 };
 
 pub const Abi = enum(u8) {
-    none = 0,
+    system_v = 0,
     hp_ux = 1,
     net_bsd = 2,
     gnu = 3,
@@ -81,31 +85,34 @@ pub const Isa = enum(u16) {
     i860 = 7,
     mips = 8,
     s370 = 9,
-    mips_le = 10,
-    hppa = 15,
+    mips_rs3_le = 10,
+    old_sparcv9 = 11,
+    parisc = 15,
+    vpp500 = 17,
+    sparc32plus = 18,
     i960 = 19,
     ppc = 20,
     ppc64 = 21,
     s390 = 22,
     spu = 23,
-    nec_v800 = 36,
+    v800 = 36,
     fr20 = 37,
-    trw_rh32 = 38,
-    motorola_rce = 39,
+    rh32 = 38,
+    mcore = 39,
     arm = 40,
-    alpha = 41,
-    super_h = 42,
-    sparc_v9 = 43,
+    old_alpha = 41,
+    sh = 42,
+    sparcv9 = 43,
     tricore = 44,
     arc = 45,
     h8_300 = 46,
     h8_300h = 47,
     h8s = 48,
     h8_500 = 49,
-    ia64 = 50,
+    ia_64 = 50,
     mips_x = 51,
     coldfire = 52,
-    m68hc12 = 53,
+    _68hc12 = 53,
     mma = 54,
     pcp = 55,
     ncpu = 56,
@@ -115,28 +122,186 @@ pub const Isa = enum(u16) {
     st100 = 60,
     tinyj = 61,
     x86_64 = 62,
-    sony_dsp = 63,
+    pdsp = 63,
     pdp10 = 64,
     pdp11 = 65,
     fx66 = 66,
     st9plus = 67,
     st7 = 68,
-    m68hc16 = 69,
-    m68hc11 = 70,
-    m68hc08 = 71,
-    m68hc05 = 72,
+    _68hc16 = 69,
+    _68hc11 = 70,
+    _68hc08 = 71,
+    _68hc05 = 72,
     svx = 73,
     st19 = 74,
     vax = 75,
     cris = 76,
-    jamrisc = 77,
-    elbrus = 175,
-    arm64 = 183,
+    javelin = 77,
+    firepath = 78,
+    zsp = 79,
+    mmix = 80,
+    huany = 81,
+    prism = 82,
+    avr = 83,
+    fr30 = 84,
+    d10v = 85,
+    d30v = 86,
+    v850 = 87,
+    m32r = 88,
+    mn10300 = 89,
+    mn10200 = 90,
+    pj = 91,
+    or1k = 92,
+    arc_compact = 93,
+    xtensa = 94,
+    videocore = 95,
+    tmm_gpp = 96,
+    ns32k = 97,
+    tpc = 98,
+    snp1k = 99,
+    st200 = 100,
+    ip2k = 101,
+    max = 102,
+    cr = 103,
+    f2mc16 = 104,
+    msp430 = 105,
+    blackfin = 106,
+    se_c33 = 107,
+    sep = 108,
+    arca = 109,
+    unicore = 110,
+    excess = 111,
+    dxp = 112,
+    altera_nios2 = 113,
+    crx = 114,
+    xgate = 115,
+    c166 = 116,
+    m16c = 117,
+    dspic30f = 118,
+    ce = 119,
+    m32c = 120,
+    tsk3000 = 131,
+    rs08 = 132,
+    sharc = 133,
+    ecog2 = 134,
+    score = 135,
+    dsp24 = 136,
+    videocore3 = 137,
+    latticemico32 = 138,
+    se_c17 = 139,
+    ti_c6000 = 140,
+    ti_c2000 = 141,
+    ti_c5500 = 142,
+    ti_pru = 144,
+    mmdsp_plus = 160,
+    cypress_m8c = 161,
+    r32c = 162,
+    trimedia = 163,
+    qdsp6 = 164,
+    _8051 = 165,
+    stxp7x = 166,
+    nds32 = 167,
+    ecog1x = 168,
+    maxq30 = 169,
+    ximo16 = 170,
+    manik = 171,
+    craynv2 = 172,
+    rx = 173,
+    metag = 174,
+    mcst_elbrus = 175,
+    ecog16 = 176,
+    cr16 = 177,
+    etpu = 178,
+    sle9x = 179,
+    l10m = 180,
+    k10m = 181,
+    aarch64 = 183,
+    avr32 = 185,
+    stm8 = 186,
+    tile64 = 187,
+    tilepro = 188,
+    microblaze = 189,
+    cuda = 190,
+    tilegx = 191,
+    cloudshield = 192,
+    corea_1st = 193,
+    corea_2nd = 194,
+    arc_compact2 = 195,
+    open8 = 196,
+    rl78 = 197,
+    videocore5 = 198,
+    _78k0r = 199,
+    _56800ex = 200,
+    ba1 = 201,
+    ba2 = 202,
+    xcore = 203,
+    mchp_pic = 204,
+    intelgt = 205,
+    km32 = 210,
+    kmx32 = 211,
+    kmx16 = 212,
+    kmx8 = 213,
+    kvarc = 214,
+    cdp = 215,
+    coge = 216,
+    cool = 217,
+    norc = 218,
+    csr_kalimba = 219,
     z80 = 220,
+    visium = 221,
+    ft32 = 222,
+    moxie = 223,
+    amdgpu = 224,
     riscv = 243,
+    lanai = 244,
+    ceva = 245,
+    ceva_x2 = 246,
     bpf = 247,
-    wdc_65c816 = 257,
+    graphcore_ipu = 248,
+    img1 = 249,
+    nfp = 250,
+    ve = 251,
+    csky = 252,
+    arc_compact3_64 = 253,
+    mcs6502 = 254,
+    arc_compact3 = 255,
+    kvx = 256,
+    _65816 = 257,
     loongarch = 258,
+    kf32 = 259,
+    u16_u8core = 260,
+    tachyum = 261,
+    _56800ef = 262,
+    avr_old = 4183,
+    msp430_old = 4185,
+    mt = 9520,
+    cygnus_fr30 = 13104,
+    webassembly = 16727,
+    xc16x = 18056,
+    s12z = 19951,
+    dlx = 23205,
+    cygnus_frv = 21569,
+    cygnus_d10v = 30288,
+    cygnus_d30v = 30326,
+    ip2k_old = 33303,
+    cygnus_powerpc = 36901,
+    alpha = 36902,
+    cygnus_m32r = 36929,
+    cygnus_v850 = 37000,
+    s390_old = 41872,
+    xtensa_old = 43975,
+    xstormy16 = 44357,
+    cygnus_mn10300 = 48879,
+    cygnus_mn10200 = 57005,
+    m32c_old = 65200,
+    iq2000 = 65210,
+    nios32 = 65211,
+    cygnus_mep = 61453,
+    moxie_old = 65261,
+    microblaze_old = 47787,
+    adapteva_epiphany = 4643,
+    propeller = 20594,
+    propeller2 = 300,
     _,
 };
 
@@ -365,30 +530,19 @@ pub const Parser = struct {
     sections: ArrayList(SectionHeader),
     programs: ArrayList(ProgramHeader),
     symbols: ArrayList(Symbol),
-    string_tables: std.HashMap(u16, []const u8, std.hash_map.AutoContext(u16), std.hash_map.default_max_load_percentage),
+    string_tables: HashMap(u16, []const u8),
 
     const Self = @This();
 
-    pub fn init(allocator: Allocator, filepath: []const u8) !Self {
-        // Read file
-        const file = std.fs.cwd().openFile(filepath, .{}) catch |err| {
-            print("Error opening file: {}\n", .{err});
-            return err;
-        };
-        defer file.close();
-
-        const file_size = try file.getEndPos();
-        const data = try allocator.alloc(u8, file_size);
-        _ = try file.readAll(data);
-
+    pub fn init(allocator: Allocator, elf_bytes: []const u8) !Self {
         var parser = Self{
             .allocator = allocator,
-            .data = data,
+            .data = elf_bytes,
             .header = undefined,
-            .sections = ArrayList(SectionHeader).init(allocator),
-            .programs = ArrayList(ProgramHeader).init(allocator),
-            .symbols = ArrayList(Symbol).init(allocator),
-            .string_tables = std.HashMap(u16, []const u8, std.hash_map.AutoContext(u16), std.hash_map.default_max_load_percentage).init(allocator),
+            .sections = ArrayList(SectionHeader).empty,
+            .programs = ArrayList(ProgramHeader).empty,
+            .symbols = ArrayList(Symbol).empty,
+            .string_tables = HashMap(u16, []const u8).empty,
         };
 
         try parser.parseHeader();
@@ -396,16 +550,14 @@ pub const Parser = struct {
         try parser.parsePrograms();
         try parser.parseStringTables();
         try parser.parseSymbols();
-
         return parser;
     }
 
     pub fn deinit(self: *Self) void {
-        self.allocator.free(self.data);
-        self.sections.deinit();
-        self.programs.deinit();
-        self.symbols.deinit();
-        self.string_tables.deinit();
+        self.sections.deinit(self.allocator);
+        self.programs.deinit(self.allocator);
+        self.symbols.deinit(self.allocator);
+        self.string_tables.deinit(self.allocator);
     }
 
     fn parseHeader(self: *Self) !void {
@@ -497,7 +649,7 @@ pub const Parser = struct {
                         .addralign = self.readU32(self.header.data, @alignCast(@ptrCast(&sh32.addralign))),
                         .entsize = self.readU32(self.header.data, @alignCast(@ptrCast(&sh32.entsize))),
                     };
-                    try self.sections.append(section);
+                    try self.sections.append(self.allocator, section);
                 },
                 .ELFCLASS64 => {
                     const sh64 = std.mem.bytesAsValue(SectionHeader64, self.data[offset .. offset + @sizeOf(SectionHeader64)]);
@@ -513,7 +665,7 @@ pub const Parser = struct {
                         .addralign = self.readU64(self.header.data, @alignCast(@ptrCast(&sh64.addralign))),
                         .entsize = self.readU64(self.header.data, @alignCast(@ptrCast(&sh64.entsize))),
                     };
-                    try self.sections.append(section);
+                    try self.sections.append(self.allocator, section);
                 },
                 else => return error.UnsupportedElfClass,
             }
@@ -540,7 +692,7 @@ pub const Parser = struct {
                         .memsz = self.readU32(self.header.data, @alignCast(@ptrCast(&ph32.memsz))),
                         .algn = self.readU32(self.header.data, @alignCast(@ptrCast(&ph32.algn))),
                     };
-                    try self.programs.append(program);
+                    try self.programs.append(self.allocator, program);
                 },
                 .ELFCLASS64 => {
                     const ph64 = std.mem.bytesAsValue(ProgramHeader64, self.data[offset .. offset + @sizeOf(ProgramHeader64)]);
@@ -554,7 +706,7 @@ pub const Parser = struct {
                         .memsz = self.readU64(self.header.data, @alignCast(@ptrCast(&ph64.memsz))),
                         .algn = self.readU64(self.header.data, @alignCast(@ptrCast(&ph64.algn))),
                     };
-                    try self.programs.append(program);
+                    try self.programs.append(self.allocator, program);
                 },
                 else => return error.UnsupportedElfClass,
             }
@@ -565,7 +717,7 @@ pub const Parser = struct {
         for (self.sections.items, 0..) |section, i| {
             if (section.type == .SHT_STRTAB) {
                 const string_data = self.data[section.offset .. section.offset + section.size];
-                try self.string_tables.put(@intCast(i), string_data);
+                try self.string_tables.put(self.allocator, @intCast(i), string_data);
             }
         }
     }
@@ -596,7 +748,7 @@ pub const Parser = struct {
                         .other = sym32.other,
                         .shndx = self.readU16(self.header.data, @alignCast(@ptrCast(&sym32.shndx))),
                     };
-                    try self.symbols.append(symbol);
+                    try self.symbols.append(self.allocator, symbol);
                     offset += @sizeOf(Symbol32);
                 },
                 .ELFCLASS64 => {
@@ -609,7 +761,7 @@ pub const Parser = struct {
                         .other = sym64.other,
                         .shndx = self.readU16(self.header.data, @alignCast(@ptrCast(&sym64.shndx))),
                     };
-                    try self.symbols.append(symbol);
+                    try self.symbols.append(self.allocator, symbol);
                     offset += @sizeOf(Symbol64);
                 },
                 else => return error.UnsupportedElfClass,

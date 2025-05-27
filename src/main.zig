@@ -1,4 +1,5 @@
 const std = @import("std");
+
 const Elf = @import("Elf.zig");
 const print = std.debug.print;
 
@@ -15,7 +16,14 @@ pub fn main() !void {
         return;
     }
 
-    var parser = Elf.Parser.init(allocator, args[1]) catch |err| {
+    const cwd = std.fs.cwd();
+    const file = try cwd.openFile(args[1], .{ .mode = .read_only });
+    defer file.close();
+
+    const buffer = try file.readToEndAlloc(allocator, std.math.maxInt(u32));
+    defer allocator.free(buffer);
+
+    var parser = Elf.Parser.init(allocator, buffer) catch |err| {
         print("Error parsing ELF file: {!}\n", .{err});
         return;
     };
