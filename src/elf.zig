@@ -427,25 +427,31 @@ pub const EI_MAG3 = 3;
 pub const EI_OSABI = 7;
 pub const EI_PAD = 9;
 pub const EI_VERSION = 6;
+
 pub const ELFCLASS32 = 1;
 pub const ELFCLASS64 = 2;
 pub const ELFCLASSNONE = 0;
 pub const ELFCLASSNUM = 3;
+
 pub const ELFCOMPRESS_HIOS = 0x6fffffff;
 pub const ELFCOMPRESS_HIPROC = 0x7fffffff;
 pub const ELFCOMPRESS_LOOS = 0x60000000;
 pub const ELFCOMPRESS_LOPROC = 0x70000000;
 pub const ELFCOMPRESS_ZLIB = 1;
 pub const ELFCOMPRESS_ZSTD = 2;
+
 pub const ELFDATA2LSB = 1;
 pub const ELFDATA2MSB = 2;
 pub const ELFDATANONE = 0;
 pub const ELFDATANUM = 3;
+
 pub const ELFMAG = "177ELF";
+
 pub const ELFMAG0 = 0x7f;
 pub const ELFMAG1 = 'E';
 pub const ELFMAG2 = 'L';
 pub const ELFMAG3 = 'F';
+
 pub const ELFOSABI_AIX = 7;
 pub const ELFOSABI_ARM = 97;
 pub const ELFOSABI_ARM_AEABI = 64;
@@ -462,6 +468,7 @@ pub const ELFOSABI_SOLARIS = 6;
 pub const ELFOSABI_STANDALONE = 255;
 pub const ELFOSABI_SYSV = 0;
 pub const ELFOSABI_TRU64 = 10;
+
 pub const ELF_NOTE_ABI = NT_GNU_ABI_TAG;
 pub const ELF_NOTE_FDO = "FDO";
 pub const ELF_NOTE_GNU = "GNU";
@@ -669,6 +676,7 @@ pub const ET_REL = 1;
 pub const EV_CURRENT = 1;
 pub const EV_NONE = 0;
 pub const EV_NUM = 2;
+
 pub const E_MIPS_ARCH_1 = EF_MIPS_ARCH_1;
 pub const E_MIPS_ARCH_2 = EF_MIPS_ARCH_2;
 pub const E_MIPS_ARCH_3 = EF_MIPS_ARCH_3;
@@ -676,6 +684,7 @@ pub const E_MIPS_ARCH_32 = EF_MIPS_ARCH_32;
 pub const E_MIPS_ARCH_4 = EF_MIPS_ARCH_4;
 pub const E_MIPS_ARCH_5 = EF_MIPS_ARCH_5;
 pub const E_MIPS_ARCH_64 = EF_MIPS_ARCH_64;
+
 pub const GNU_PROPERTY_1_NEEDED = GNU_PROPERTY_UINT32_OR_LO;
 pub const GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS = (1 << 0);
 pub const GNU_PROPERTY_AARCH64_FEATURE_1_AND = 0xc0000000;
@@ -701,13 +710,16 @@ pub const GNU_PROPERTY_X86_ISA_1_USED = 0xc0010002;
 pub const GNU_PROPERTY_X86_ISA_1_V2 = (1 << 1);
 pub const GNU_PROPERTY_X86_ISA_1_V3 = (1 << 2);
 pub const GNU_PROPERTY_X86_ISA_1_V4 = (1 << 3);
+
 pub const GRP_COMDAT = 0x1;
+
 pub const LITUSE_ALPHA_ADDR = 0;
 pub const LITUSE_ALPHA_BASE = 1;
 pub const LITUSE_ALPHA_BYTOFF = 2;
 pub const LITUSE_ALPHA_JSR = 3;
 pub const LITUSE_ALPHA_TLS_GD = 4;
 pub const LITUSE_ALPHA_TLS_LDM = 5;
+
 pub const LL_DELAY_LOAD = (1 << 4);
 pub const LL_DELTA = (1 << 5);
 pub const LL_EXACT_MATCH = (1 << 0);
@@ -715,6 +727,7 @@ pub const LL_EXPORTS = (1 << 3);
 pub const LL_IGNORE_INT_VER = (1 << 1);
 pub const LL_NONE = 0;
 pub const LL_REQUIRE_MINOR = (1 << 2);
+
 pub const MIPS_AFL_ASE_DSP = 0x00000001;
 pub const MIPS_AFL_ASE_DSPR2 = 0x00000002;
 pub const MIPS_AFL_ASE_EVA = 0x00000004;
@@ -729,6 +742,7 @@ pub const MIPS_AFL_ASE_MT = 0x00000040;
 pub const MIPS_AFL_ASE_SMARTMIPS = 0x00000080;
 pub const MIPS_AFL_ASE_VIRT = 0x00000100;
 pub const MIPS_AFL_ASE_XPA = 0x00001000;
+
 pub const MIPS_AFL_EXT_10000 = 11;
 pub const MIPS_AFL_EXT_3900 = 10;
 pub const MIPS_AFL_EXT_4010 = 8;
@@ -747,14 +761,19 @@ pub const MIPS_AFL_EXT_OCTEON2 = 2;
 pub const MIPS_AFL_EXT_OCTEONP = 3;
 pub const MIPS_AFL_EXT_SB1 = 12;
 pub const MIPS_AFL_EXT_XLR = 1;
+
 pub const MIPS_AFL_FLAGS1_ODDSPREG = 1;
+
 pub const MIPS_AFL_REG_128 = 0x03;
 pub const MIPS_AFL_REG_32 = 0x01;
 pub const MIPS_AFL_REG_64 = 0x02;
 pub const MIPS_AFL_REG_NONE = 0x00;
+
 pub const NOTE_GNU_PROPERTY_SECTION_NAME = ".note.gnu.property";
+
 pub const NT_386_IOPERM = 0x201;
 pub const NT_386_TLS = 0x200;
+
 pub const NT_ARM_FPMR = 0x40e;
 pub const NT_ARM_HW_BREAK = 0x402;
 pub const NT_ARM_HW_WATCH = 0x403;
@@ -771,16 +790,36 @@ pub const NT_ARM_TLS = 0x401;
 pub const NT_ARM_VFP = 0x400;
 pub const NT_ARM_ZA = 0x40c;
 pub const NT_ARM_ZT = 0x40d;
+
 pub const NT_ASRS = 8;
 pub const NT_AUXV = 6;
 pub const NT_FILE = 0x46494c45;
 pub const NT_FPREGSET = 2;
+pub const NT_LWPSINFO = 17;
+pub const NT_LWPSTATUS = 16;
+pub const NT_PLATFORM = 5;
+pub const NT_PRCRED = 14;
+pub const NT_PRFPREG = 2;
+pub const NT_PRFPXREG = 20;
+pub const NT_PRPSINFO = 3;
+pub const NT_PRSTATUS = 1;
+pub const NT_PRXFPREG = 0x46e62b7f;
+pub const NT_PRXREG = 4;
+pub const NT_PSINFO = 13;
+pub const NT_PSTATUS = 10;
+pub const NT_SIGINFO = 0x53494749;
+pub const NT_TASKSTRUCT = 4;
+pub const NT_UTSNAME = 15;
+pub const NT_VERSION = 1;
+pub const NT_VMCOREDD = 0x700;
+pub const NT_GWINDOWS = 7;
+
 pub const NT_GNU_ABI_TAG = 1;
 pub const NT_GNU_BUILD_ID = 3;
 pub const NT_GNU_GOLD_VERSION = 4;
 pub const NT_GNU_HWCAP = 2;
 pub const NT_GNU_PROPERTY_TYPE_0 = 5;
-pub const NT_GWINDOWS = 7;
+
 pub const NT_LOONGARCH_CPUCFG = 0xa00;
 pub const NT_LOONGARCH_CSR = 0xa01;
 pub const NT_LOONGARCH_HW_BREAK = 0xa05;
@@ -788,12 +827,11 @@ pub const NT_LOONGARCH_HW_WATCH = 0xa06;
 pub const NT_LOONGARCH_LASX = 0xa03;
 pub const NT_LOONGARCH_LBT = 0xa04;
 pub const NT_LOONGARCH_LSX = 0xa02;
-pub const NT_LWPSINFO = 17;
-pub const NT_LWPSTATUS = 16;
+
 pub const NT_MIPS_DSP = 0x800;
 pub const NT_MIPS_FP_MODE = 0x801;
 pub const NT_MIPS_MSA = 0x802;
-pub const NT_PLATFORM = 5;
+
 pub const NT_PPC_DEXCR = 0x111;
 pub const NT_PPC_DSCR = 0x105;
 pub const NT_PPC_EBB = 0x106;
@@ -813,17 +851,10 @@ pub const NT_PPC_TM_CVSX = 0x10b;
 pub const NT_PPC_TM_SPR = 0x10c;
 pub const NT_PPC_VMX = 0x100;
 pub const NT_PPC_VSX = 0x102;
-pub const NT_PRCRED = 14;
-pub const NT_PRFPREG = 2;
-pub const NT_PRFPXREG = 20;
-pub const NT_PRPSINFO = 3;
-pub const NT_PRSTATUS = 1;
-pub const NT_PRXFPREG = 0x46e62b7f;
-pub const NT_PRXREG = 4;
-pub const NT_PSINFO = 13;
-pub const NT_PSTATUS = 10;
+
 pub const NT_RISCV_CSR = 0x900;
 pub const NT_RISCV_VECTOR = 0x901;
+
 pub const NT_S390_CTRS = 0x304;
 pub const NT_S390_GS_BC = 0x30c;
 pub const NT_S390_GS_CB = 0x30b;
@@ -839,14 +870,11 @@ pub const NT_S390_TODCMP = 0x302;
 pub const NT_S390_TODPREG = 0x303;
 pub const NT_S390_VXRS_HIGH = 0x30a;
 pub const NT_S390_VXRS_LOW = 0x309;
-pub const NT_SIGINFO = 0x53494749;
-pub const NT_TASKSTRUCT = 4;
-pub const NT_UTSNAME = 15;
-pub const NT_VERSION = 1;
-pub const NT_VMCOREDD = 0x700;
+
 pub const NT_X86_SHSTK = 0x204;
 pub const NT_X86_XSAVE_LAYOUT = 0x205;
 pub const NT_X86_XSTATE = 0x202;
+
 pub const ODK_EXCEPTIONS = 2;
 pub const ODK_FILL = 5;
 pub const ODK_HWAND = 7;
@@ -856,6 +884,7 @@ pub const ODK_NULL = 0;
 pub const ODK_PAD = 3;
 pub const ODK_REGINFO = 1;
 pub const ODK_TAGS = 6;
+
 pub const OEX_DISMISS = 0x80000;
 pub const OEX_FPDBUG = 0x40000;
 pub const OEX_FPU_DIV0 = 0x08;
@@ -868,18 +897,23 @@ pub const OEX_FPU_UFLO = 0x02;
 pub const OEX_PAGE0 = 0x10000;
 pub const OEX_PRECISEFP = OEX_FPDBUG;
 pub const OEX_SMM = 0x20000;
+
 pub const OHWA0_R4KEOP_CHECKED = 0x00000001;
 pub const OHWA1_R4KEOP_CLEAN = 0x00000002;
+
 pub const OHW_R4KEOP = 0x1;
 pub const OHW_R5KCVTL = 0x8;
 pub const OHW_R5KEOP = 0x4;
 pub const OHW_R8KPFETCH = 0x2;
+
 pub const OPAD_POSTFIX = 0x2;
 pub const OPAD_PREFIX = 0x1;
 pub const OPAD_SYMBOL = 0x4;
+
 pub const PF_ARM_ABS = 0x40000000;
 pub const PF_ARM_PI = 0x20000000;
 pub const PF_ARM_SB = 0x10000000;
+
 pub const PF_HP_CODE = 0x01000000;
 pub const PF_HP_FAR_SHARED = 0x00200000;
 pub const PF_HP_LAZYSWAP = 0x04000000;
@@ -887,19 +921,20 @@ pub const PF_HP_MODIFY = 0x02000000;
 pub const PF_HP_NEAR_SHARED = 0x00400000;
 pub const PF_HP_PAGE_SIZE = 0x00100000;
 pub const PF_HP_SBP = 0x08000000;
+
 pub const PF_IA_64_NORECOV = 0x80000000;
-pub const PF_MASKOS = 0x0ff00000;
-pub const PF_MASKPROC = 0xf0000000;
+
 pub const PF_MIPS_LOCAL = 0x10000000;
+
 pub const PF_PARISC_SBP = 0x08000000;
-pub const PF_R = (1 << 2);
-pub const PF_W = (1 << 1);
-pub const PF_X = (1 << 0);
+
 pub const PN_XNUM = 0xffff;
+
 pub const PPC64_OPT_LOCALENTRY = 4;
 pub const PPC64_OPT_MULTI_TOC = 2;
 pub const PPC64_OPT_TLS = 1;
 pub const PPC_OPT_TLS = 1;
+
 pub const PT_AARCH64_MEMTAG_MTE = (PT_LOPROC + 2);
 pub const PT_ARM_EXIDX = (PT_LOPROC + 1);
 pub const PT_DYNAMIC = 2;
@@ -951,6 +986,7 @@ pub const PT_SHLIB = 5;
 pub const PT_SUNWBSS = 0x6ffffffa;
 pub const PT_SUNWSTACK = 0x6ffffffb;
 pub const PT_TLS = 7;
+
 pub const RHF_CORD = (1 << 12);
 pub const RHF_DEFAULT_DELAY_LOAD = (1 << 9);
 pub const RHF_DELTA_C_PLUS_PLUS = (1 << 6);
@@ -967,6 +1003,7 @@ pub const RHF_REQUICKSTART = (1 << 10);
 pub const RHF_REQUICKSTARTED = (1 << 11);
 pub const RHF_RLD_ORDER_SAFE = (1 << 14);
 pub const RHF_SGI_ONLY = (1 << 4);
+
 pub const R_386_16 = 20;
 pub const R_386_32 = 1;
 pub const R_386_32PLT = 11;
@@ -1010,6 +1047,7 @@ pub const R_386_TLS_LE = 17;
 pub const R_386_TLS_LE_32 = 34;
 pub const R_386_TLS_TPOFF = 14;
 pub const R_386_TLS_TPOFF32 = 37;
+
 pub const R_390_12 = 2;
 pub const R_390_16 = 3;
 pub const R_390_20 = 57;
@@ -1073,6 +1111,7 @@ pub const R_390_TLS_LE32 = 50;
 pub const R_390_TLS_LE64 = 51;
 pub const R_390_TLS_LOAD = 37;
 pub const R_390_TLS_TPOFF = 56;
+
 pub const R_68K_16 = 2;
 pub const R_68K_32 = 1;
 pub const R_68K_8 = 3;
@@ -1115,6 +1154,7 @@ pub const R_68K_TLS_LE16 = 38;
 pub const R_68K_TLS_LE32 = 37;
 pub const R_68K_TLS_LE8 = 39;
 pub const R_68K_TLS_TPREL32 = 42;
+
 pub const R_AARCH64_ABS16 = 259;
 pub const R_AARCH64_ABS32 = 258;
 pub const R_AARCH64_ABS64 = 257;
@@ -1248,12 +1288,14 @@ pub const R_AARCH64_TLS_DTPMOD = 1028;
 pub const R_AARCH64_TLS_DTPREL = 1029;
 pub const R_AARCH64_TLS_TPREL = 1030;
 pub const R_AARCH64_TSTBR14 = 279;
+
 pub const R_AC_SECTOFF_S9 = 0x26;
 pub const R_AC_SECTOFF_S9_1 = 0x27;
 pub const R_AC_SECTOFF_S9_2 = 0x28;
 pub const R_AC_SECTOFF_U8 = 0x23;
 pub const R_AC_SECTOFF_U8_1 = 0x24;
 pub const R_AC_SECTOFF_U8_2 = 0x25;
+
 pub const R_ALPHA_BRADDR = 7;
 pub const R_ALPHA_COPY = 24;
 pub const R_ALPHA_DTPMOD64 = 31;
@@ -1288,6 +1330,7 @@ pub const R_ALPHA_TPREL16 = 41;
 pub const R_ALPHA_TPREL64 = 38;
 pub const R_ALPHA_TPRELHI = 39;
 pub const R_ALPHA_TPRELLO = 40;
+
 pub const R_ARC_16 = 0x2;
 pub const R_ARC_24 = 0x3;
 pub const R_ARC_32 = 0x4;
@@ -1355,6 +1398,7 @@ pub const R_ARC_TLS_LE_S9 = 0x4A;
 pub const R_ARC_TLS_TPOFF = 0x44;
 pub const R_ARC_W = 0x1A;
 pub const R_ARC_W_ME = 0x1F;
+
 pub const R_ARM_ABS12 = 6;
 pub const R_ARM_ABS16 = 5;
 pub const R_ARM_ABS32 = 2;
@@ -1482,9 +1526,11 @@ pub const R_ARM_TLS_LE32 = 108;
 pub const R_ARM_TLS_TPOFF32 = 19;
 pub const R_ARM_V4BX = 40;
 pub const R_ARM_XPC25 = 15;
+
 pub const R_BPF_64_32 = 10;
 pub const R_BPF_64_64 = 1;
 pub const R_BPF_NONE = 0;
+
 pub const R_CKCORE_ADDR32 = 1;
 pub const R_CKCORE_ADDRGOT = 17;
 pub const R_CKCORE_ADDRGOT_HI16 = 36;
@@ -1540,6 +1586,7 @@ pub const R_CKCORE_TLS_LDO32 = 55;
 pub const R_CKCORE_TLS_LE32 = 51;
 pub const R_CKCORE_TLS_TPOFF32 = 58;
 pub const R_CKCORE_TOFFSET_LO16 = 41;
+
 pub const R_CRIS_16 = 2;
 pub const R_CRIS_16_GOT = 13;
 pub const R_CRIS_16_GOTPLT = 15;
@@ -1561,6 +1608,7 @@ pub const R_CRIS_JUMP_SLOT = 11;
 pub const R_CRIS_NONE = 0;
 pub const R_CRIS_NUM = 20;
 pub const R_CRIS_RELATIVE = 12;
+
 pub const R_IA64_COPY = 0x84;
 pub const R_IA64_DIR32LSB = 0x25;
 pub const R_IA64_DIR32MSB = 0x24;
@@ -1642,6 +1690,7 @@ pub const R_IA64_TPREL22 = 0x92;
 pub const R_IA64_TPREL64I = 0x93;
 pub const R_IA64_TPREL64LSB = 0x97;
 pub const R_IA64_TPREL64MSB = 0x96;
+
 pub const R_LARCH_32 = 1;
 pub const R_LARCH_32_PCREL = 99;
 pub const R_LARCH_64 = 2;
@@ -1759,6 +1808,7 @@ pub const R_LARCH_TLS_LE_LO12 = 84;
 pub const R_LARCH_TLS_LE_LO12_R = 123;
 pub const R_LARCH_TLS_TPREL32 = 10;
 pub const R_LARCH_TLS_TPREL64 = 11;
+
 pub const R_M32R_10_PCREL = 4;
 pub const R_M32R_10_PCREL_RELA = 36;
 pub const R_M32R_16 = 1;
@@ -1803,6 +1853,7 @@ pub const R_M32R_RELA_GNU_VTENTRY = 44;
 pub const R_M32R_RELA_GNU_VTINHERIT = 43;
 pub const R_M32R_SDA16 = 10;
 pub const R_M32R_SDA16_RELA = 42;
+
 pub const R_METAG_ADDR32 = 2;
 pub const R_METAG_COPY = 43;
 pub const R_METAG_GETSETOFF = 5;
@@ -1852,6 +1903,7 @@ pub const R_METAG_TLS_LE = 59;
 pub const R_METAG_TLS_LE_HI16 = 60;
 pub const R_METAG_TLS_LE_LO16 = 61;
 pub const R_METAG_TLS_TPOFF = 56;
+
 pub const R_MICROBLAZE_32 = 1;
 pub const R_MICROBLAZE_32_LO = 6;
 pub const R_MICROBLAZE_32_PCREL = 2;
@@ -1882,6 +1934,7 @@ pub const R_MICROBLAZE_TLSGD = 23;
 pub const R_MICROBLAZE_TLSGOTTPREL32 = 28;
 pub const R_MICROBLAZE_TLSLD = 24;
 pub const R_MICROBLAZE_TLSTPREL32 = 29;
+
 pub const R_MICROMIPS_26_S1 = 133;
 pub const R_MICROMIPS_CALL16 = 142;
 pub const R_MICROMIPS_CALL_HI16 = 153;
@@ -1914,6 +1967,7 @@ pub const R_MICROMIPS_TLS_GOTTPREL = 166;
 pub const R_MICROMIPS_TLS_LDM = 163;
 pub const R_MICROMIPS_TLS_TPREL_HI16 = 169;
 pub const R_MICROMIPS_TLS_TPREL_LO16 = 170;
+
 pub const R_MIPS16_26 = 100;
 pub const R_MIPS16_CALL16 = 103;
 pub const R_MIPS16_GOT16 = 102;
@@ -1928,6 +1982,7 @@ pub const R_MIPS16_TLS_GOTTPREL = 110;
 pub const R_MIPS16_TLS_LDM = 107;
 pub const R_MIPS16_TLS_TPREL_HI16 = 111;
 pub const R_MIPS16_TLS_TPREL_LO16 = 112;
+
 pub const R_MIPS_16 = 1;
 pub const R_MIPS_26 = 4;
 pub const R_MIPS_32 = 2;
@@ -1992,6 +2047,7 @@ pub const R_MIPS_TLS_TPREL32 = 47;
 pub const R_MIPS_TLS_TPREL64 = 48;
 pub const R_MIPS_TLS_TPREL_HI16 = 49;
 pub const R_MIPS_TLS_TPREL_LO16 = 50;
+
 pub const R_MN10300_16 = 2;
 pub const R_MN10300_24 = 9;
 pub const R_MN10300_32 = 1;
@@ -2028,6 +2084,7 @@ pub const R_MN10300_TLS_LD = 25;
 pub const R_MN10300_TLS_LDO = 26;
 pub const R_MN10300_TLS_LE = 29;
 pub const R_MN10300_TLS_TPOFF = 32;
+
 pub const R_NDS32_32_RELA = 20;
 pub const R_NDS32_COPY = 39;
 pub const R_NDS32_GLOB_DAT = 40;
@@ -2036,6 +2093,7 @@ pub const R_NDS32_NONE = 0;
 pub const R_NDS32_RELATIVE = 42;
 pub const R_NDS32_TLS_DESC = 119;
 pub const R_NDS32_TLS_TPOFF = 102;
+
 pub const R_NIOS2_ALIGN = 21;
 pub const R_NIOS2_BFD_RELOC_16 = 13;
 pub const R_NIOS2_BFD_RELOC_32 = 12;
@@ -2082,6 +2140,7 @@ pub const R_NIOS2_TLS_LE16 = 32;
 pub const R_NIOS2_TLS_TPREL = 35;
 pub const R_NIOS2_U16 = 2;
 pub const R_NIOS2_UJMP = 18;
+
 pub const R_OR1K_16 = 2;
 pub const R_OR1K_16_PCREL = 10;
 pub const R_OR1K_32 = 1;
@@ -2117,6 +2176,7 @@ pub const R_OR1K_TLS_LDO_LO16 = 27;
 pub const R_OR1K_TLS_LE_HI16 = 30;
 pub const R_OR1K_TLS_LE_LO16 = 31;
 pub const R_OR1K_TLS_TPOFF = 32;
+
 pub const R_PARISC_COPY = 128;
 pub const R_PARISC_DIR14DR = 84;
 pub const R_PARISC_DIR14R = 6;
