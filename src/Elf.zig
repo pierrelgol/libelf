@@ -266,3 +266,211 @@ pub const PariscFlags = enum(u32) {
     parisc_1_1 = elf.EFA_PARISC_1_1,
     parisc_2_0 = elf.EFA_PARISC_2_0,
 };
+
+pub const ArchFlags = packed struct {
+    pub const Alpha = enum(u32) {
+        alpha_32bit = elf.EF_ALPHA_32BIT,
+        alpha_canrelax = elf.EF_ALPHA_CANRELAX,
+        _,
+    };
+
+    pub const Arc = enum(u32) {
+        arc_all_msk = elf.EF_ARC_ALL_MSK,
+        arc_mach_msk = elf.EF_ARC_MACH_MSK,
+        arc_osabi_msk = elf.EF_ARC_OSABI_MSK,
+        _,
+    };
+
+    pub const Arm = enum(u32) {
+        arm_abi_float_hard = elf.EF_ARM_ABI_FLOAT_HARD,
+        arm_abi_float_soft = elf.EF_ARM_ABI_FLOAT_SOFT,
+        arm_align8 = elf.EF_ARM_ALIGN8,
+        arm_apcs_26 = elf.EF_ARM_APCS_26,
+        arm_apcs_float = elf.EF_ARM_APCS_FLOAT,
+        arm_be8 = elf.EF_ARM_BE8,
+        arm_dynsymsusesegidx = elf.EF_ARM_DYNSYMSUSESEGIDX,
+        arm_eabimask = elf.EF_ARM_EABIMASK,
+        arm_eabi_unknown = elf.EF_ARM_EABI_UNKNOWN,
+        arm_eabi_ver1 = elf.EF_ARM_EABI_VER1,
+        arm_eabi_ver2 = elf.EF_ARM_EABI_VER2,
+        arm_eabi_ver3 = elf.EF_ARM_EABI_VER3,
+        arm_eabi_ver4 = elf.EF_ARM_EABI_VER4,
+        arm_eabi_ver5 = elf.EF_ARM_EABI_VER5,
+        arm_hasentry = elf.EF_ARM_HASENTRY,
+        arm_interwork = elf.EF_ARM_INTERWORK,
+        arm_le8 = elf.EF_ARM_LE8,
+        arm_mapsymsfirst = elf.EF_ARM_MAPSYMSFIRST,
+        arm_maverick_float = elf.EF_ARM_MAVERICK_FLOAT,
+        arm_new_abi = elf.EF_ARM_NEW_ABI,
+        arm_old_abi = elf.EF_ARM_OLD_ABI,
+        arm_pic = elf.EF_ARM_PIC,
+        arm_relexec = elf.EF_ARM_RELEXEC,
+        arm_soft_float = elf.EF_ARM_SOFT_FLOAT,
+        arm_symsaresorted = elf.EF_ARM_SYMSARESORTED,
+        arm_vfp_float = elf.EF_ARM_VFP_FLOAT,
+        _,
+    };
+
+    pub const Cpu32 = enum(u32) {
+        cpu32 = elf.EF_CPU32,
+        _,
+    };
+
+    pub const Csky = enum(u32) {
+        csky_abimask = elf.EF_CSKY_ABIMASK,
+        csky_abiv1 = elf.EF_CSKY_ABIV1,
+        csky_abiv2 = elf.EF_CSKY_ABIV2,
+        csky_other = elf.EF_CSKY_OTHER,
+        csky_processor = elf.EF_CSKY_PROCESSOR,
+        _,
+    };
+
+    pub const Ia64 = enum(u32) {
+        ia_64_abi64 = elf.EF_IA_64_ABI64,
+        ia_64_arch = elf.EF_IA_64_ARCH,
+        ia_64_maskos = elf.EF_IA_64_MASKOS,
+        _,
+    };
+
+    pub const Larch = enum(u32) {
+        larch_abi_double_float = elf.EF_LARCH_ABI_DOUBLE_FLOAT,
+        larch_abi_modifier_mask = elf.EF_LARCH_ABI_MODIFIER_MASK,
+        larch_abi_single_float = elf.EF_LARCH_ABI_SINGLE_FLOAT,
+        larch_abi_soft_float = elf.EF_LARCH_ABI_SOFT_FLOAT,
+        larch_objabi_v1 = elf.EF_LARCH_OBJABI_V1,
+        _,
+    };
+
+    pub const Mips = enum(u64) {
+        mips_32bitmode = elf.EF_MIPS_32BITMODE,
+        mips_abi = elf.EF_MIPS_ABI,
+        mips_abi2 = elf.EF_MIPS_ABI2,
+        mips_abi_eabi32 = elf.EF_MIPS_ABI_EABI32,
+        mips_abi_eabi64 = elf.EF_MIPS_ABI_EABI64,
+        mips_abi_o32 = elf.EF_MIPS_ABI_O32,
+        mips_abi_o64 = elf.EF_MIPS_ABI_O64,
+        mips_abi_on32 = elf.EF_MIPS_ABI_ON32,
+        mips_arch = elf.EF_MIPS_ARCH,
+        mips_arch_1 = elf.EF_MIPS_ARCH_1,
+        mips_arch_2 = elf.EF_MIPS_ARCH_2,
+        mips_arch_3 = elf.EF_MIPS_ARCH_3,
+        mips_arch_32 = elf.EF_MIPS_ARCH_32,
+        mips_arch_32r2 = elf.EF_MIPS_ARCH_32R2,
+        mips_arch_32r6 = elf.EF_MIPS_ARCH_32R6,
+        mips_arch_4 = elf.EF_MIPS_ARCH_4,
+        mips_arch_5 = elf.EF_MIPS_ARCH_5,
+        mips_arch_64 = elf.EF_MIPS_ARCH_64,
+        mips_arch_64r2 = elf.EF_MIPS_ARCH_64R2,
+        mips_arch_64r6 = elf.EF_MIPS_ARCH_64R6,
+        mips_arch_ase = elf.EF_MIPS_ARCH_ASE,
+        mips_arch_ase_m16 = elf.EF_MIPS_ARCH_ASE_M16,
+        mips_arch_ase_mdmx = elf.EF_MIPS_ARCH_ASE_MDMX,
+        mips_arch_ase_micromips = elf.EF_MIPS_ARCH_ASE_MICROMIPS,
+        mips_cpic = elf.EF_MIPS_CPIC,
+        mips_fp64 = elf.EF_MIPS_FP64,
+        mips_mach = elf.EF_MIPS_MACH,
+        mips_mach_3900 = elf.EF_MIPS_MACH_3900,
+        mips_mach_4010 = elf.EF_MIPS_MACH_4010,
+        mips_mach_4100 = elf.EF_MIPS_MACH_4100,
+        mips_mach_4111 = elf.EF_MIPS_MACH_4111,
+        mips_mach_4120 = elf.EF_MIPS_MACH_4120,
+        mips_mach_4650 = elf.EF_MIPS_MACH_4650,
+        mips_mach_5400 = elf.EF_MIPS_MACH_5400,
+        mips_mach_5500 = elf.EF_MIPS_MACH_5500,
+        mips_mach_5900 = elf.EF_MIPS_MACH_5900,
+        mips_mach_9000 = elf.EF_MIPS_MACH_9000,
+        mips_mach_allegrex = elf.EF_MIPS_MACH_ALLEGREX,
+        mips_mach_gs264e = elf.EF_MIPS_MACH_GS264E,
+        mips_mach_gs464 = elf.EF_MIPS_MACH_GS464,
+        mips_mach_gs464e = elf.EF_MIPS_MACH_GS464E,
+        mips_mach_iamr2 = elf.EF_MIPS_MACH_IAMR2,
+        mips_mach_ls2e = elf.EF_MIPS_MACH_LS2E,
+        mips_mach_ls2f = elf.EF_MIPS_MACH_LS2F,
+        mips_mach_octeon = elf.EF_MIPS_MACH_OCTEON,
+        mips_mach_octeon2 = elf.EF_MIPS_MACH_OCTEON2,
+        mips_mach_octeon3 = elf.EF_MIPS_MACH_OCTEON3,
+        mips_mach_sb1 = elf.EF_MIPS_MACH_SB1,
+        mips_mach_xlr = elf.EF_MIPS_MACH_XLR,
+        mips_nan2008 = elf.EF_MIPS_NAN2008,
+        mips_noreorder = elf.EF_MIPS_NOREORDER,
+        mips_options_first = elf.EF_MIPS_OPTIONS_FIRST,
+        mips_pic = elf.EF_MIPS_PIC,
+        mips_ucode = elf.EF_MIPS_UCODE,
+        mips_xgot = elf.EF_MIPS_XGOT,
+    };
+
+    pub const Parisc = enum(u64) {
+        PARISC_ARCH = elf.EF_PARISC_ARCH,
+        PARISC_EXT = elf.EF_PARISC_EXT,
+        PARISC_LAZYSWAP = elf.EF_PARISC_LAZYSWAP,
+        PARISC_LSB = elf.EF_PARISC_LSB,
+        PARISC_NO_KABP = elf.EF_PARISC_NO_KABP,
+        PARISC_TRAPNIL = elf.EF_PARISC_TRAPNIL,
+        PARISC_WIDE = elf.EF_PARISC_WIDE,
+    };
+
+    pub const Ppc64 = enum(u8) {
+        ppc64_abi = elf.EF_PPC64_ABI,
+    };
+
+    pub const Ppc = enum(u64) {
+        EF_PPC_EMB = elf.EF_PPC_EMB,
+        EF_PPC_RELOCATABLE = elf.EF_PPC_RELOCATABLE,
+        EF_PPC_RELOCATABLE_LIB = elf.EF_PPC_RELOCATABLE_LIB,
+    };
+
+    pub const RiscV = enum(u64) {
+        riscv_float_abi = elf.EF_RISCV_FLOAT_ABI,
+        riscv_float_abi_double = elf.EF_RISCV_FLOAT_ABI_DOUBLE,
+        riscv_float_abi_quad = elf.EF_RISCV_FLOAT_ABI_QUAD,
+        riscv_float_abi_single = elf.EF_RISCV_FLOAT_ABI_SINGLE,
+        riscv_float_abi_soft = elf.EF_RISCV_FLOAT_ABI_SOFT,
+        riscv_rvc = elf.EF_RISCV_RVC,
+        riscv_rve = elf.EF_RISCV_RVE,
+        riscv_tso = elf.EF_RISCV_TSO,
+        _,
+    };
+
+    pub const S390 = enum(u64) {
+        s390_high_gprs = elf.EF_S390_HIGH_GPRS,
+        _,
+    };
+
+    pub const Sh = enum(u8) {
+        sh1 = elf.EF_SH1,
+        sh2 = elf.EF_SH2,
+        sh2a = elf.EF_SH2A,
+        sh2a_nofpu = elf.EF_SH2A_NOFPU,
+        sh2a_sh3e = elf.EF_SH2A_SH3E,
+        sh2a_sh3_nofpu = elf.EF_SH2A_SH3_NOFPU,
+        sh2a_sh4 = elf.EF_SH2A_SH4,
+        sh2a_sh4_nofpu = elf.EF_SH2A_SH4_NOFPU,
+        sh2e = elf.EF_SH2E,
+        sh3 = elf.EF_SH3,
+        sh3e = elf.EF_SH3E,
+        sh3_dsp = elf.EF_SH3_DSP,
+        sh3_nommu = elf.EF_SH3_NOMMU,
+        sh4 = elf.EF_SH4,
+        sh4a = elf.EF_SH4A,
+        sh4al_dsp = elf.EF_SH4AL_DSP,
+        sh4a_nofpu = elf.EF_SH4A_NOFPU,
+        sh4_nofpu = elf.EF_SH4_NOFPU,
+        sh4_nommu_nofpu = elf.EF_SH4_NOMMU_NOFPU,
+        sh_dsp = elf.EF_SH_DSP,
+        sh_mach_mask = elf.EF_SH_MACH_MASK,
+        sh_unknown = elf.EF_SH_UNKNOWN,
+    };
+
+    pub const SparcV = enum(u64) {
+        sparcv9_mm = elf.EF_SPARCV9_MM,
+        sparcv9_pso = elf.EF_SPARCV9_PSO,
+        sparcv9_rmo = elf.EF_SPARCV9_RMO,
+        sparcv9_tso = elf.EF_SPARCV9_TSO,
+        sparc_32plus = elf.EF_SPARC_32PLUS,
+        sparc_ext_mask = elf.EF_SPARC_EXT_MASK,
+        sparc_hal_r1 = elf.EF_SPARC_HAL_R1,
+        sparc_ledata = elf.EF_SPARC_LEDATA,
+        sparc_sun_us1 = elf.EF_SPARC_SUN_US1,
+        sparc_sun_us3 = elf.EF_SPARC_SUN_US3,
+    };
+};

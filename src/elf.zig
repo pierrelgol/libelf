@@ -252,9 +252,11 @@ pub const EFA_PARISC_2_0 = 0x0214;
 
 pub const EF_ALPHA_32BIT = 1;
 pub const EF_ALPHA_CANRELAX = 2;
+
 pub const EF_ARC_ALL_MSK = (EF_ARC_MACH_MSK | EF_ARC_OSABI_MSK);
 pub const EF_ARC_MACH_MSK = 0x000000ff;
 pub const EF_ARC_OSABI_MSK = 0x00000f00;
+
 pub const EF_ARM_ABI_FLOAT_HARD = 0x400;
 pub const EF_ARM_ABI_FLOAT_SOFT = 0x200;
 pub const EF_ARM_ALIGN8 = 0x40;
@@ -281,20 +283,25 @@ pub const EF_ARM_RELEXEC = 0x01;
 pub const EF_ARM_SOFT_FLOAT = 0x200;
 pub const EF_ARM_SYMSARESORTED = 0x04;
 pub const EF_ARM_VFP_FLOAT = 0x400;
+
 pub const EF_CPU32 = 0x00810000;
+
 pub const EF_CSKY_ABIMASK = 0xF0000000;
 pub const EF_CSKY_ABIV1 = 0x10000000;
 pub const EF_CSKY_ABIV2 = 0x20000000;
 pub const EF_CSKY_OTHER = 0x0FFF0000;
 pub const EF_CSKY_PROCESSOR = 0x0000FFFF;
+
 pub const EF_IA_64_ABI64 = 0x00000010;
 pub const EF_IA_64_ARCH = 0xff000000;
 pub const EF_IA_64_MASKOS = 0x0000000f;
+
 pub const EF_LARCH_ABI_DOUBLE_FLOAT = 0x03;
 pub const EF_LARCH_ABI_MODIFIER_MASK = 0x07;
 pub const EF_LARCH_ABI_SINGLE_FLOAT = 0x02;
 pub const EF_LARCH_ABI_SOFT_FLOAT = 0x01;
 pub const EF_LARCH_OBJABI_V1 = 0x40;
+
 pub const EF_MIPS_32BITMODE = 0x00000100;
 pub const EF_MIPS_ABI = 0x0000F000;
 pub const EF_MIPS_ABI2 = 32;
@@ -350,6 +357,7 @@ pub const EF_MIPS_OPTIONS_FIRST = 0x00000080;
 pub const EF_MIPS_PIC = 2;
 pub const EF_MIPS_UCODE = 16;
 pub const EF_MIPS_XGOT = 8;
+
 pub const EF_PARISC_ARCH = 0x0000ffff;
 pub const EF_PARISC_EXT = 0x00020000;
 pub const EF_PARISC_LAZYSWAP = 0x00400000;
@@ -357,10 +365,13 @@ pub const EF_PARISC_LSB = 0x00040000;
 pub const EF_PARISC_NO_KABP = 0x00100000;
 pub const EF_PARISC_TRAPNIL = 0x00010000;
 pub const EF_PARISC_WIDE = 0x00080000;
+
 pub const EF_PPC64_ABI = 3;
+
 pub const EF_PPC_EMB = 0x80000000;
 pub const EF_PPC_RELOCATABLE = 0x00010000;
 pub const EF_PPC_RELOCATABLE_LIB = 0x00008000;
+
 pub const EF_RISCV_FLOAT_ABI = 0x0006;
 pub const EF_RISCV_FLOAT_ABI_DOUBLE = 0x0004;
 pub const EF_RISCV_FLOAT_ABI_QUAD = 0x0006;
@@ -369,7 +380,9 @@ pub const EF_RISCV_FLOAT_ABI_SOFT = 0x0000;
 pub const EF_RISCV_RVC = 0x0001;
 pub const EF_RISCV_RVE = 0x0008;
 pub const EF_RISCV_TSO = 0x0010;
+
 pub const EF_S390_HIGH_GPRS = 0x00000001;
+
 pub const EF_SH1 = 0x1;
 pub const EF_SH2 = 0x2;
 pub const EF_SH2A = 0xd;
@@ -392,6 +405,7 @@ pub const EF_SH4_NOMMU_NOFPU = 0x12;
 pub const EF_SH_DSP = 0x4;
 pub const EF_SH_MACH_MASK = 0x1f;
 pub const EF_SH_UNKNOWN = 0x0;
+
 pub const EF_SPARCV9_MM = 3;
 pub const EF_SPARCV9_PSO = 1;
 pub const EF_SPARCV9_RMO = 2;
@@ -402,6 +416,7 @@ pub const EF_SPARC_HAL_R1 = 0x000400;
 pub const EF_SPARC_LEDATA = 0x800000;
 pub const EF_SPARC_SUN_US1 = 0x000200;
 pub const EF_SPARC_SUN_US3 = 0x000800;
+
 pub const EI_ABIVERSION = 8;
 pub const EI_CLASS = 4;
 pub const EI_DATA = 5;
