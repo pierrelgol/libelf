@@ -45,6 +45,7 @@ pub const AT_SYSINFO = 32;
 pub const AT_SYSINFO_EHDR = 33;
 pub const AT_UCACHEBSIZE = 21;
 pub const AT_UID = 11;
+
 pub const DF_1_CONFALT = 0x00002000;
 pub const DF_1_DIRECT = 0x00000100;
 pub const DF_1_DISPRELDNE = 0x00008000;
@@ -76,6 +77,7 @@ pub const DF_1_STUB = 0x04000000;
 pub const DF_1_SYMINTPOSE = 0x00800000;
 pub const DF_1_TRANS = 0x00000200;
 pub const DF_1_WEAKFILTER = 0x20000000;
+
 pub const DF_BIND_NOW = 0x00000008;
 pub const DF_ORIGIN = 0x00000001;
 pub const DF_P1_GROUPPERM = 0x00000002;
@@ -83,8 +85,10 @@ pub const DF_P1_LAZYLOAD = 0x00000001;
 pub const DF_STATIC_TLS = 0x00000010;
 pub const DF_SYMBOLIC = 0x00000002;
 pub const DF_TEXTREL = 0x00000004;
+
 pub const DTF_1_CONFEXP = 0x00000002;
 pub const DTF_1_PARINIT = 0x00000001;
+
 pub const DT_AARCH64_BTI_PLT = (DT_LOPROC + 1);
 pub const DT_AARCH64_NUM = 6;
 pub const DT_AARCH64_PAC_PLT = (DT_LOPROC + 3);
@@ -241,9 +245,11 @@ pub const DT_X86_64_NUM = 4;
 pub const DT_X86_64_PLT = (DT_LOPROC + 0);
 pub const DT_X86_64_PLTENT = (DT_LOPROC + 3);
 pub const DT_X86_64_PLTSZ = (DT_LOPROC + 1);
+
 pub const EFA_PARISC_1_0 = 0x020b;
 pub const EFA_PARISC_1_1 = 0x0210;
 pub const EFA_PARISC_2_0 = 0x0214;
+
 pub const EF_ALPHA_32BIT = 1;
 pub const EF_ALPHA_CANRELAX = 2;
 pub const EF_ARC_ALL_MSK = (EF_ARC_MACH_MSK | EF_ARC_OSABI_MSK);
@@ -450,6 +456,7 @@ pub const ELF_NOTE_OS_LINUX = 0;
 pub const ELF_NOTE_OS_SOLARIS2 = 2;
 pub const ELF_NOTE_PAGESIZE_HINT = 1;
 pub const ELF_NOTE_SOLARIS = "SUNW Solaris";
+
 pub const EM_386 = 3;
 pub const EM_56800EX = 200;
 pub const EM_68HC05 = 72;
@@ -3097,8 +3104,8 @@ pub const Elf32_Section = u16;
 pub const Elf64_Section = u16;
 pub const Elf32_Versym = Elf32_Half;
 pub const Elf64_Versym = Elf64_Half;
-
 pub const EI_NIDENT = 16;
+
 pub const Elf32_Ehdr = extern struct {
     e_ident: [EI_NIDENT]u8,
     e_type: Elf32_Half,
