@@ -9,9 +9,11 @@ pub const Arch = struct {
     };
 };
 
-pub const Sto = enum(u8) {
-    local_bit = elf.STO_PPC64_LOCAL_BIT,
-    local_mask = elf.STO_PPC64_LOCAL_MASK,
+pub const Section = struct {
+    pub const Sto = enum(u8) {
+        local_bit = elf.STO_PPC64_LOCAL_BIT,
+        local_mask = elf.STO_PPC64_LOCAL_MASK,
+    };
 };
 
 pub const OptionFlags = enum(u32) {
@@ -141,4 +143,14 @@ pub const Relocation = enum(u16) {
     uaddr16 = elf.R_PPC64_UADDR16,
     uaddr32 = elf.R_PPC64_UADDR32,
     uaddr64 = elf.R_PPC64_UADDR64,
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        ppc64_glink = elf.DT_PPC64_GLINK,
+        ppc64_num = elf.DT_PPC64_NUM,
+        ppc64_opd = elf.DT_PPC64_OPD,
+        ppc64_opdsz = elf.DT_PPC64_OPDSZ,
+        ppc64_opt = elf.DT_PPC64_OPT,
+    };
 };

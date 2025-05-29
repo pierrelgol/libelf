@@ -2,11 +2,13 @@ const std = @import("std");
 const elf = @import("../elf.zig");
 const X86_64 = @This();
 
-pub const NoteType = enum(u16) {
-    shstk = elf.NT_X86_SHSTK,
-    xsave_layout = elf.NT_X86_XSAVE_LAYOUT,
-    xstate = elf.NT_X86_XSTATE,
-    _,
+pub const Note = struct {
+    pub const Type = enum(u16) {
+        shstk = elf.NT_X86_SHSTK,
+        xsave_layout = elf.NT_X86_XSAVE_LAYOUT,
+        xstate = elf.NT_X86_XSTATE,
+        _,
+    };
 };
 
 pub const Relocation = enum(u8) {
@@ -52,4 +54,13 @@ pub const Relocation = enum(u8) {
     tlsld = elf.R_X86_64_TLSLD,
     tpoff32 = elf.R_X86_64_TPOFF32,
     tpoff64 = elf.R_X86_64_TPOFF64,
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        x86_64_num = elf.DT_X86_64_NUM,
+        x86_64_plt = elf.DT_X86_64_PLT,
+        x86_64_pltent = elf.DT_X86_64_PLTENT,
+        x86_64_pltsz = elf.DT_X86_64_PLTSZ,
+    };
 };

@@ -12,6 +12,8 @@ pub const Arch = struct {
         _,
     };
 };
-pub const SectionType = enum(u32) {
-    attributes = elf.SHT_CSKY_ATTRIBUTES,
+pub const Section = struct {
+    pub const Type = enum(u32) {
+        attributes = elf.SHT_CSKY_ATTRIBUTES,
+    };
 };

@@ -43,23 +43,18 @@ pub const Arch = struct {
 };
 
 pub const Symbol = struct {
-    pub const Type = enum(u8) {
+    pub const Type = enum(u32) {
         common = elf.STT_COMMON,
         file = elf.STT_FILE,
         func = elf.STT_FUNC,
-        gnu_ifunc = elf.STT_GNU_IFUNC,
         hios = elf.STT_HIOS,
         hiproc = elf.STT_HIPROC,
-        hp_opaque = elf.STT_HP_OPAQUE,
-        // hp_stub = elf.STT_HP_STUB,
-        // loos = elf.STT_LOOS,
+        loos = elf.STT_LOOS,
         loproc = elf.STT_LOPROC,
         notype = elf.STT_NOTYPE,
         num = elf.STT_NUM,
         object = elf.STT_OBJECT,
-        // parisc_millicode = elf.STT_PARISC_MILLICODE,
         section = elf.STT_SECTION,
-        // sparc_register = elf.STT_SPARC_REGISTER,
         tls = elf.STT_TLS,
     };
 
@@ -70,26 +65,28 @@ pub const Symbol = struct {
         protected = elf.STV_PROTECTED,
     };
 
-    pub const Info = enum(u32) {
+    pub const Info = enum(u16) {
         bt_lowreserve = elf.SYMINFO_BT_LOWRESERVE,
         bt_parent = elf.SYMINFO_BT_PARENT,
         bt_self = elf.SYMINFO_BT_SELF,
         current = elf.SYMINFO_CURRENT,
-        flg_copy = elf.SYMINFO_FLG_COPY,
-        // flg_direct = elf.SYMINFO_FLG_DIRECT,
-        flg_lazyload = elf.SYMINFO_FLG_LAZYLOAD,
-        flg_passthru = elf.SYMINFO_FLG_PASSTHRU,
         none = elf.SYMINFO_NONE,
-        // num = elf.SYMINFO_NUM,
+        num = elf.SYMINFO_NUM,
+
+        pub const Flags = enum(u16) {
+            flg_copy = elf.SYMINFO_FLG_COPY,
+            flg_direct = elf.SYMINFO_FLG_DIRECT,
+            flg_lazyload = elf.SYMINFO_FLG_LAZYLOAD,
+            flg_passthru = elf.SYMINFO_FLG_PASSTHRU,
+        };
     };
 
-    pub const Binding = enum(u8) {
+    pub const Binding = enum(u32) {
         global = elf.STB_GLOBAL,
-        gnu_unique = elf.STB_GNU_UNIQUE,
         hios = elf.STB_HIOS,
         hiproc = elf.STB_HIPROC,
         local = elf.STB_LOCAL,
-        // loos = elf.STB_LOOS,
+        loos = elf.STB_LOOS,
         loproc = elf.STB_LOPROC,
         num = elf.STB_NUM,
         weak = elf.STB_WEAK,
@@ -171,25 +168,23 @@ pub const Magic = enum(u8) {
     _,
 };
 
-// pub const OsAbi = enum(u8) {
-//     aix = elf.ELFOSABI_AIX,
-//     arm = elf.ELFOSABI_ARM,
-//     arm_aeabi = elf.ELFOSABI_ARM_AEABI,
-//     freebsd = elf.ELFOSABI_FREEBSD,
-//     gnu = elf.ELFOSABI_GNU,
-//     hpux = elf.ELFOSABI_HPUX,
-//     irix = elf.ELFOSABI_IRIX,
-//     linux = elf.ELFOSABI_LINUX,
-//     modesto = elf.ELFOSABI_MODESTO,
-//     netbsd = elf.ELFOSABI_NETBSD,
-//     none = elf.ELFOSABI_NONE,
-//     openbsd = elf.ELFOSABI_OPENBSD,
-//     solaris = elf.ELFOSABI_SOLARIS,
-//     standalone = elf.ELFOSABI_STANDALONE,
-//     sysv = elf.ELFOSABI_SYSV,
-//     tru64 = elf.ELFOSABI_TRU64,
-//     _,
-// };
+pub const OsAbi = enum(u8) {
+    aix = elf.ELFOSABI_AIX,
+    arm = elf.ELFOSABI_ARM,
+    arm_aeabi = elf.ELFOSABI_ARM_AEABI,
+    freebsd = elf.ELFOSABI_FREEBSD,
+    hpux = elf.ELFOSABI_HPUX,
+    irix = elf.ELFOSABI_IRIX,
+    linux = elf.ELFOSABI_LINUX,
+    modesto = elf.ELFOSABI_MODESTO,
+    netbsd = elf.ELFOSABI_NETBSD,
+    openbsd = elf.ELFOSABI_OPENBSD,
+    solaris = elf.ELFOSABI_SOLARIS,
+    standalone = elf.ELFOSABI_STANDALONE,
+    sysv = elf.ELFOSABI_SYSV,
+    tru64 = elf.ELFOSABI_TRU64,
+    _,
+};
 
 pub const Note = struct {
     pub const abi = elf.ELF_NOTE_ABI;
@@ -202,30 +197,29 @@ pub const Note = struct {
     pub const pagesize_hint = elf.ELF_NOTE_PAGESIZE_HINT;
     pub const solaris = elf.ELF_NOTE_SOLARIS;
 
-    pub const Type = enum(u32) {
-        asrs = elf.NT_ASRS,
-        auxv = elf.NT_AUXV,
-        file = elf.NT_FILE,
-        fpregset = elf.NT_FPREGSET,
-        lwpsinfo = elf.NT_LWPSINFO,
-        lwpstatus = elf.NT_LWPSTATUS,
-        platform = elf.NT_PLATFORM,
-        prcred = elf.NT_PRCRED,
-        // prfpreg = elf.NT_PRFPREG,
-        prfpxreg = elf.NT_PRFPXREG,
-        prpsinfo = elf.NT_PRPSINFO,
-        prstatus = elf.NT_PRSTATUS,
-        prxfpreg = elf.NT_PRXFPREG,
-        prxreg = elf.NT_PRXREG,
-        psinfo = elf.NT_PSINFO,
-        pstatus = elf.NT_PSTATUS,
-        siginfo = elf.NT_SIGINFO,
-        // taskstruct = elf.NT_TASKSTRUCT,
-        utsname = elf.NT_UTSNAME,
-        // version = elf.NT_VERSION,
-        vmcoredd = elf.NT_VMCOREDD,
-        gwindows = elf.NT_GWINDOWS,
-        _,
+    pub const Type = struct {
+        pub const asrs = elf.NT_ASRS;
+        pub const auxv = elf.NT_AUXV;
+        pub const file = elf.NT_FILE;
+        pub const fpregset = elf.NT_FPREGSET;
+        pub const lwpsinfo = elf.NT_LWPSINFO;
+        pub const lwpstatus = elf.NT_LWPSTATUS;
+        pub const platform = elf.NT_PLATFORM;
+        pub const prcred = elf.NT_PRCRED;
+        pub const prfpreg = elf.NT_PRFPREG;
+        pub const prfpxreg = elf.NT_PRFPXREG;
+        pub const prpsinfo = elf.NT_PRPSINFO;
+        pub const prstatus = elf.NT_PRSTATUS;
+        pub const prxfpreg = elf.NT_PRXFPREG;
+        pub const prxreg = elf.NT_PRXREG;
+        pub const psinfo = elf.NT_PSINFO;
+        pub const pstatus = elf.NT_PSTATUS;
+        pub const siginfo = elf.NT_SIGINFO;
+        pub const taskstruct = elf.NT_TASKSTRUCT;
+        pub const utsname = elf.NT_UTSNAME;
+        pub const version = elf.NT_VERSION;
+        pub const vmcoredd = elf.NT_VMCOREDD;
+        pub const gwindows = elf.NT_GWINDOWS;
     };
 };
 
@@ -251,7 +245,6 @@ pub const Machine = enum(u16) {
     arca = elf.EM_ARCA,
     arcv2 = elf.EM_ARCV2,
     arc_a5 = elf.EM_ARC_A5,
-    // arc_compact = elf.EM_ARC_COMPACT,
     arm = elf.EM_ARM,
     avr = elf.EM_AVR,
     avr32 = elf.EM_AVR32,
@@ -418,19 +411,19 @@ pub const Machine = enum(u16) {
 };
 
 pub const Section = struct {
-    pub const SectionIndex = enum(u16) {
-        abs = elf.SHN_ABS,
-        after = elf.SHN_AFTER,
-        before = elf.SHN_BEFORE,
-        common = elf.SHN_COMMON,
-        hios = elf.SHN_HIOS,
-        hiproc = elf.SHN_HIPROC,
-        hireserve = elf.SHN_HIRESERVE,
-        loos = elf.SHN_LOOS,
-        // loproc = elf.SHN_LOPROC,
-        // loreserve = elf.SHN_LORESERVE,
-        undef = elf.SHN_UNDEF,
-        // xindex = elf.SHN_XINDEX,
+    pub const SectionIndex = struct {
+        pub const abs = elf.SHN_ABS;
+        pub const after = elf.SHN_AFTER;
+        pub const before = elf.SHN_BEFORE;
+        pub const common = elf.SHN_COMMON;
+        pub const hios = elf.SHN_HIOS;
+        pub const hiproc = elf.SHN_HIPROC;
+        pub const hireserve = elf.SHN_HIRESERVE;
+        pub const loos = elf.SHN_LOOS;
+        pub const loproc = elf.SHN_LOPROC;
+        pub const loreserve = elf.SHN_LORESERVE;
+        pub const undef = elf.SHN_UNDEF;
+        pub const xindex = elf.SHN_XINDEX;
     };
 
     pub const SectionType = enum(u32) {
@@ -442,7 +435,6 @@ pub const Section = struct {
         hash = elf.SHT_HASH,
         hios = elf.SHT_HIOS,
         hiproc = elf.SHT_HIPROC,
-        // hisunw = elf.SHT_HISUNW,
         hiuser = elf.SHT_HIUSER,
         init_array = elf.SHT_INIT_ARRAY,
         loos = elf.SHT_LOOS,
@@ -486,64 +478,27 @@ pub const Section = struct {
 
 pub const Program = struct {
     pub const Flags = enum(u32) {
-        // r = elf.PF_R,
-        // w = elf.PF_W,
-        // x = elf.PF_X,
-        // maskos = elf.PF_MASKOS,
-        // maskproc = elf.PF_MASKPROC,
+        r = elf.PF_R,
+        w = elf.PF_W,
+        x = elf.PF_X,
+        maskos = elf.PF_MASKOS,
+        maskproc = elf.PF_MASKPROC,
         _,
     };
+
     pub const Type = enum(u32) {
-        aarch64_memtag_mte = elf.PT_AARCH64_MEMTAG_MTE,
-        arm_exidx = elf.PT_ARM_EXIDX,
         dynamic = elf.PT_DYNAMIC,
-        gnu_eh_frame = elf.PT_GNU_EH_FRAME,
-        gnu_property = elf.PT_GNU_PROPERTY,
-        gnu_relro = elf.PT_GNU_RELRO,
-        gnu_sframe = elf.PT_GNU_SFRAME,
-        gnu_stack = elf.PT_GNU_STACK,
         hios = elf.PT_HIOS,
         hiproc = elf.PT_HIPROC,
-        // hisunw = elf.PT_HISUNW,
-        hp_core_comm = elf.PT_HP_CORE_COMM,
-        hp_core_kernel = elf.PT_HP_CORE_KERNEL,
-        hp_core_loadable = elf.PT_HP_CORE_LOADABLE,
-        hp_core_mmf = elf.PT_HP_CORE_MMF,
-        hp_core_none = elf.PT_HP_CORE_NONE,
-        hp_core_proc = elf.PT_HP_CORE_PROC,
-        hp_core_shm = elf.PT_HP_CORE_SHM,
-        hp_core_stack = elf.PT_HP_CORE_STACK,
-        hp_core_version = elf.PT_HP_CORE_VERSION,
-        hp_fastbind = elf.PT_HP_FASTBIND,
-        hp_hsl_annot = elf.PT_HP_HSL_ANNOT,
-        hp_opt_annot = elf.PT_HP_OPT_ANNOT,
-        hp_parallel = elf.PT_HP_PARALLEL,
-        hp_stack = elf.PT_HP_STACK,
-        hp_tls = elf.PT_HP_TLS,
-        ia_64_archext = elf.PT_IA_64_ARCHEXT,
-        // ia_64_hp_hsl_anot = elf.PT_IA_64_HP_HSL_ANOT,
-        // ia_64_hp_opt_anot = elf.PT_IA_64_HP_OPT_ANOT,
-        // ia_64_hp_stack = elf.PT_IA_64_HP_STACK,
-        // ia_64_unwind = elf.PT_IA_64_UNWIND,
         interp = elf.PT_INTERP,
         load = elf.PT_LOAD,
-        // loos = elf.PT_LOOS,
-        // loproc = elf.PT_LOPROC,
-        losunw = elf.PT_LOSUNW,
-        mips_abiflags = elf.PT_MIPS_ABIFLAGS,
-        // mips_options = elf.PT_MIPS_OPTIONS,
-        // mips_reginfo = elf.PT_MIPS_REGINFO,
-        // mips_rtproc = elf.PT_MIPS_RTPROC,
+        loos = elf.PT_LOOS,
+        loproc = elf.PT_LOPROC,
         note = elf.PT_NOTE,
         null = elf.PT_NULL,
         num = elf.PT_NUM,
-        // parisc_archext = elf.PT_PARISC_ARCHEXT,
-        // parisc_unwind = elf.PT_PARISC_UNWIND,
         phdr = elf.PT_PHDR,
-        // riscv_attributes = elf.PT_RISCV_ATTRIBUTES,
         shlib = elf.PT_SHLIB,
-        // sunwbss = elf.PT_SUNWBSS,
-        sunwstack = elf.PT_SUNWSTACK,
         tls = elf.PT_TLS,
         _,
     };
@@ -639,12 +594,15 @@ pub const Dyn = struct {
     pub const Flags = enum(u64) {
         bind_now = elf.DF_BIND_NOW,
         origin = elf.DF_ORIGIN,
-        p1_groupperm = elf.DF_P1_GROUPPERM,
-        // p1_lazyload = elf.DF_P1_LAZYLOAD,
         static_tls = elf.DF_STATIC_TLS,
-        // symbolic = elf.DF_SYMBOLIC,
+        symbolic = elf.DF_SYMBOLIC,
         textrel = elf.DF_TEXTREL,
         _,
+        pub const P1 = enum(u64) {
+            p1_groupperm = elf.DF_P1_GROUPPERM,
+            p1_lazyload = elf.DF_P1_LAZYLOAD,
+            _,
+        };
     };
 
     pub const TransferFlags1 = enum(u64) {
@@ -654,15 +612,6 @@ pub const Dyn = struct {
     };
 
     pub const Tags = enum(u64) {
-        aarch64_bti_plt = elf.DT_AARCH64_BTI_PLT,
-        aarch64_num = elf.DT_AARCH64_NUM,
-        aarch64_pac_plt = elf.DT_AARCH64_PAC_PLT,
-        aarch64_variant_pcs = elf.DT_AARCH64_VARIANT_PCS,
-        addrnum = elf.DT_ADDRNUM,
-        addrrnghi = elf.DT_ADDRRNGHI,
-        addrrnglo = elf.DT_ADDRRNGLO,
-        alpha_num = elf.DT_ALPHA_NUM,
-        alpha_pltro = elf.DT_ALPHA_PLTRO,
         audit = elf.DT_AUDIT,
         auxiliary = elf.DT_AUXILIARY,
         bind_now = elf.DT_BIND_NOW,
@@ -673,101 +622,28 @@ pub const Dyn = struct {
         encoding = elf.DT_ENCODING,
         extranum = elf.DT_EXTRANUM,
         feature_1 = elf.DT_FEATURE_1,
-        filter = elf.DT_FILTER,
         fini = elf.DT_FINI,
         fini_array = elf.DT_FINI_ARRAY,
         fini_arraysz = elf.DT_FINI_ARRAYSZ,
         flags = elf.DT_FLAGS,
         flags_1 = elf.DT_FLAGS_1,
-        gnu_conflict = elf.DT_GNU_CONFLICT,
-        gnu_conflictsz = elf.DT_GNU_CONFLICTSZ,
-        gnu_hash = elf.DT_GNU_HASH,
-        gnu_liblist = elf.DT_GNU_LIBLIST,
-        gnu_liblistsz = elf.DT_GNU_LIBLISTSZ,
-        gnu_prelinked = elf.DT_GNU_PRELINKED,
         hash = elf.DT_HASH,
         hios = elf.DT_HIOS,
-        // hiproc = elf.DT_HIPROC,
-        // ia_64_num = elf.DT_IA_64_NUM,
-        // ia_64_plt_reserve = elf.DT_IA_64_PLT_RESERVE,
+        hiproc = elf.DT_HIPROC,
         init = elf.DT_INIT,
         init_array = elf.DT_INIT_ARRAY,
         init_arraysz = elf.DT_INIT_ARRAYSZ,
         jmprel = elf.DT_JMPREL,
         loos = elf.DT_LOOS,
-        // loproc = elf.DT_LOPROC,
-        mips_aux_dynamic = elf.DT_MIPS_AUX_DYNAMIC,
-        mips_base_address = elf.DT_MIPS_BASE_ADDRESS,
-        mips_compact_size = elf.DT_MIPS_COMPACT_SIZE,
-        mips_conflict = elf.DT_MIPS_CONFLICT,
-        mips_conflictno = elf.DT_MIPS_CONFLICTNO,
-        mips_cxx_flags = elf.DT_MIPS_CXX_FLAGS,
-        mips_delta_class = elf.DT_MIPS_DELTA_CLASS,
-        mips_delta_classsym = elf.DT_MIPS_DELTA_CLASSSYM,
-        mips_delta_classsym_no = elf.DT_MIPS_DELTA_CLASSSYM_NO,
-        mips_delta_class_no = elf.DT_MIPS_DELTA_CLASS_NO,
-        mips_delta_instance = elf.DT_MIPS_DELTA_INSTANCE,
-        mips_delta_instance_no = elf.DT_MIPS_DELTA_INSTANCE_NO,
-        mips_delta_reloc = elf.DT_MIPS_DELTA_RELOC,
-        mips_delta_reloc_no = elf.DT_MIPS_DELTA_RELOC_NO,
-        mips_delta_sym = elf.DT_MIPS_DELTA_SYM,
-        mips_delta_sym_no = elf.DT_MIPS_DELTA_SYM_NO,
-        mips_dynstr_align = elf.DT_MIPS_DYNSTR_ALIGN,
-        // mips_flags = elf.DT_MIPS_FLAGS,
-        mips_gotsym = elf.DT_MIPS_GOTSYM,
-        mips_gp_value = elf.DT_MIPS_GP_VALUE,
-        mips_hidden_gotidx = elf.DT_MIPS_HIDDEN_GOTIDX,
-        mips_hipageno = elf.DT_MIPS_HIPAGENO,
-        // mips_ichecksum = elf.DT_MIPS_ICHECKSUM,
-        mips_interface = elf.DT_MIPS_INTERFACE,
-        mips_interface_size = elf.DT_MIPS_INTERFACE_SIZE,
-        mips_iversion = elf.DT_MIPS_IVERSION,
-        mips_liblist = elf.DT_MIPS_LIBLIST,
-        mips_liblistno = elf.DT_MIPS_LIBLISTNO,
-        mips_localpage_gotidx = elf.DT_MIPS_LOCALPAGE_GOTIDX,
-        mips_local_gotidx = elf.DT_MIPS_LOCAL_GOTIDX,
-        mips_local_gotno = elf.DT_MIPS_LOCAL_GOTNO,
-        mips_msym = elf.DT_MIPS_MSYM,
-        mips_num = elf.DT_MIPS_NUM,
-        mips_options = elf.DT_MIPS_OPTIONS,
-        mips_perf_suffix = elf.DT_MIPS_PERF_SUFFIX,
-        mips_pixie_init = elf.DT_MIPS_PIXIE_INIT,
-        mips_pltgot = elf.DT_MIPS_PLTGOT,
-        mips_protected_gotidx = elf.DT_MIPS_PROTECTED_GOTIDX,
-        mips_rld_map = elf.DT_MIPS_RLD_MAP,
-        mips_rld_map_rel = elf.DT_MIPS_RLD_MAP_REL,
-        mips_rld_text_resolve_addr = elf.DT_MIPS_RLD_TEXT_RESOLVE_ADDR,
-        // mips_rld_version = elf.DT_MIPS_RLD_VERSION,
-        mips_rwplt = elf.DT_MIPS_RWPLT,
-        mips_symbol_lib = elf.DT_MIPS_SYMBOL_LIB,
-        mips_symtabno = elf.DT_MIPS_SYMTABNO,
-        mips_time_stamp = elf.DT_MIPS_TIME_STAMP,
-        mips_unrefextno = elf.DT_MIPS_UNREFEXTNO,
-        mips_xhash = elf.DT_MIPS_XHASH,
+        loproc = elf.DT_LOPROC,
         moveent = elf.DT_MOVEENT,
         movesz = elf.DT_MOVESZ,
         movetab = elf.DT_MOVETAB,
-        // needed = elf.DT_NEEDED,
-        // nios2_gp = elf.DT_NIOS2_GP,
+        needed = elf.DT_NEEDED,
         null = elf.DT_NULL,
         num = elf.DT_NUM,
-        // pltgot = elf.DT_PLTGOT,
-        pltpad = elf.DT_PLTPAD,
-        pltpadsz = elf.DT_PLTPADSZ,
-        pltrel = elf.DT_PLTREL,
-        pltrelsz = elf.DT_PLTRELSZ,
         posflag_1 = elf.DT_POSFLAG_1,
-        // ppc64_glink = elf.DT_PPC64_GLINK,
-        // ppc64_num = elf.DT_PPC64_NUM,
-        // ppc64_opd = elf.DT_PPC64_OPD,
-        // ppc64_opdsz = elf.DT_PPC64_OPDSZ,
-        // ppc64_opt = elf.DT_PPC64_OPT,
-        // ppc_got = elf.DT_PPC_GOT,
-        // ppc_num = elf.DT_PPC_NUM,
-        // ppc_opt = elf.DT_PPC_OPT,
-        // preinit_array = elf.DT_PREINIT_ARRAY,
-        preinit_arraysz = elf.DT_PREINIT_ARRAYSZ,
-        // procnum = elf.DT_PROCNUM,
+        procnum = elf.DT_PROCNUM,
         rel = elf.DT_REL,
         rela = elf.DT_RELA,
         relacount = elf.DT_RELACOUNT,
@@ -779,37 +655,59 @@ pub const Dyn = struct {
         relrent = elf.DT_RELRENT,
         relrsz = elf.DT_RELRSZ,
         relsz = elf.DT_RELSZ,
-        // riscv_variant_cc = elf.DT_RISCV_VARIANT_CC,
         rpath = elf.DT_RPATH,
         runpath = elf.DT_RUNPATH,
         soname = elf.DT_SONAME,
-        // sparc_num = elf.DT_SPARC_NUM,
-        // sparc_register = elf.DT_SPARC_REGISTER,
+        sparc_num = elf.DT_SPARC_NUM,
+        sparc_register = elf.DT_SPARC_REGISTER,
         strsz = elf.DT_STRSZ,
         strtab = elf.DT_STRTAB,
         symbolic = elf.DT_SYMBOLIC,
-        // syment = elf.DT_SYMENT,
+        syment = elf.DT_SYMENT,
         syminent = elf.DT_SYMINENT,
-        // syminfo = elf.DT_SYMINFO,
+        syminfo = elf.DT_SYMINFO,
         syminsz = elf.DT_SYMINSZ,
-        // symtab = elf.DT_SYMTAB,
+        symtab = elf.DT_SYMTAB,
         symtab_shndx = elf.DT_SYMTAB_SHNDX,
         textrel = elf.DT_TEXTREL,
-        tlsdesc_got = elf.DT_TLSDESC_GOT,
-        tlsdesc_plt = elf.DT_TLSDESC_PLT,
-        // valnum = elf.DT_VALNUM,
-        // valrnghi = elf.DT_VALRNGHI,
-        valrnglo = elf.DT_VALRNGLO,
-        verdef = elf.DT_VERDEF,
-        verdefnum = elf.DT_VERDEFNUM,
-        verneed = elf.DT_VERNEED,
-        verneednum = elf.DT_VERNEEDNUM,
-        // versiontagnum = elf.DT_VERSIONTAGNUM,
-        versym = elf.DT_VERSYM,
-        // x86_64_num = elf.DT_X86_64_NUM,
-        // x86_64_plt = elf.DT_X86_64_PLT,
-        // x86_64_pltent = elf.DT_X86_64_PLTENT,
-        // x86_64_pltsz = elf.DT_X86_64_PLTSZ,
-        _,
+
+        pub const Addr = enum(u64) {
+            addrnum = elf.DT_ADDRNUM,
+            addrrnghi = elf.DT_ADDRRNGHI,
+            addrrnglo = elf.DT_ADDRRNGLO,
+        };
+
+        pub const Tls = enum(u32) {
+            desc_got = elf.DT_TLSDESC_GOT,
+            desc_plt = elf.DT_TLSDESC_PLT,
+        };
+
+        pub const Ver = enum(u32) {
+            def = elf.DT_VERDEF,
+            defnum = elf.DT_VERDEFNUM,
+            need = elf.DT_VERNEED,
+            neednum = elf.DT_VERNEEDNUM,
+            siontagnum = elf.DT_VERSIONTAGNUM,
+            sym = elf.DT_VERSYM,
+        };
+
+        pub const Val = enum(u32) {
+            num = elf.DT_VALNUM,
+            rnghi = elf.DT_VALRNGHI,
+            rnglo = elf.DT_VALRNGLO,
+        };
+
+        pub const Preinit = enum(u32) {
+            preinit_array = elf.DT_PREINIT_ARRAY,
+            preinit_arraysz = elf.DT_PREINIT_ARRAYSZ,
+        };
+
+        pub const Plt = enum(u32) {
+            pltgot = elf.DT_PLTGOT,
+            pltpad = elf.DT_PLTPAD,
+            pltpadsz = elf.DT_PLTPADSZ,
+            pltrel = elf.DT_PLTREL,
+            pltrelsz = elf.DT_PLTRELSZ,
+        };
     };
 };

@@ -32,6 +32,5 @@ pub fn build(b: *std.Build) void {
         .name = "elf",
         .root_module = lib_mod,
     });
-
     check_step.dependOn(&lib_check.step);
 }

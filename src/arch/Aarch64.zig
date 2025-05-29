@@ -2,8 +2,19 @@ const std = @import("std");
 const elf = @import("../elf.zig");
 const Aarch64 = @This();
 
-pub const Sto = enum(u8) {
-    variant_pcs = elf.STO_AARCH64_VARIANT_PCS,
+pub const Section = struct {
+    pub const Sto = enum(u8) {
+        variant_pcs = elf.STO_AARCH64_VARIANT_PCS,
+    };
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        aarch64_bti_plt = elf.DT_AARCH64_BTI_PLT,
+        aarch64_num = elf.DT_AARCH64_NUM,
+        aarch64_pac_plt = elf.DT_AARCH64_PAC_PLT,
+        aarch64_variant_pcs = elf.DT_AARCH64_VARIANT_PCS,
+    };
 };
 
 pub const Relocation = enum(u16) {
@@ -140,4 +151,10 @@ pub const Relocation = enum(u16) {
     tls_dtprel = elf.R_AARCH64_TLS_DTPREL,
     tls_tprel = elf.R_AARCH64_TLS_TPREL,
     tstbr14 = elf.R_AARCH64_TSTBR14,
+};
+
+pub const Program = struct {
+    pub const Type = enum(u32) {
+        aarch64_memtag_mte = elf.PT_AARCH64_MEMTAG_MTE,
+    };
 };

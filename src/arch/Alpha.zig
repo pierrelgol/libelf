@@ -10,18 +10,27 @@ pub const Arch = packed struct {
     };
 };
 
-pub const SectionFlags = enum(u32) {
-    gprel = elf.SHF_ALPHA_GPREL,
+pub const Section = struct {
+    pub const Flags = enum(u32) {
+        gprel = elf.SHF_ALPHA_GPREL,
+    };
+
+    pub const Type = enum(u32) {
+        debug = elf.SHT_ALPHA_DEBUG,
+        reginfo = elf.SHT_ALPHA_REGINFO,
+    };
+
+    pub const Sto = enum(u8) {
+        nopv = elf.STO_ALPHA_NOPV,
+        std_gpload = elf.STO_ALPHA_STD_GPLOAD,
+    };
 };
 
-pub const SectionType = enum(u32) {
-    debug = elf.SHT_ALPHA_DEBUG,
-    reginfo = elf.SHT_ALPHA_REGINFO,
-};
-
-pub const Sto = enum(u8) {
-    nopv = elf.STO_ALPHA_NOPV,
-    std_gpload = elf.STO_ALPHA_STD_GPLOAD,
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        alpha_num = elf.DT_ALPHA_NUM,
+        alpha_pltro = elf.DT_ALPHA_PLTRO,
+    };
 };
 
 pub const Lituse = enum(u8) {

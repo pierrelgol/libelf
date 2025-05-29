@@ -16,27 +16,29 @@ pub const OptionFlags = enum(u32) {
     _,
 };
 
-pub const NoteType = enum(u16) {
-    dexcr = elf.NT_PPC_DEXCR,
-    dscr = elf.NT_PPC_DSCR,
-    ebb = elf.NT_PPC_EBB,
-    hashkeyr = elf.NT_PPC_HASHKEYR,
-    pkey = elf.NT_PPC_PKEY,
-    pmu = elf.NT_PPC_PMU,
-    ppr = elf.NT_PPC_PPR,
-    spe = elf.NT_PPC_SPE,
-    tar = elf.NT_PPC_TAR,
-    tm_cdscr = elf.NT_PPC_TM_CDSCR,
-    tm_cfpr = elf.NT_PPC_TM_CFPR,
-    tm_cgpr = elf.NT_PPC_TM_CGPR,
-    tm_cppr = elf.NT_PPC_TM_CPPR,
-    tm_ctar = elf.NT_PPC_TM_CTAR,
-    tm_cvmx = elf.NT_PPC_TM_CVMX,
-    tm_cvsx = elf.NT_PPC_TM_CVSX,
-    tm_spr = elf.NT_PPC_TM_SPR,
-    vmx = elf.NT_PPC_VMX,
-    vsx = elf.NT_PPC_VSX,
-    _,
+pub const Note = struct {
+    pub const Type = enum(u16) {
+        dexcr = elf.NT_PPC_DEXCR,
+        dscr = elf.NT_PPC_DSCR,
+        ebb = elf.NT_PPC_EBB,
+        hashkeyr = elf.NT_PPC_HASHKEYR,
+        pkey = elf.NT_PPC_PKEY,
+        pmu = elf.NT_PPC_PMU,
+        ppr = elf.NT_PPC_PPR,
+        spe = elf.NT_PPC_SPE,
+        tar = elf.NT_PPC_TAR,
+        tm_cdscr = elf.NT_PPC_TM_CDSCR,
+        tm_cfpr = elf.NT_PPC_TM_CFPR,
+        tm_cgpr = elf.NT_PPC_TM_CGPR,
+        tm_cppr = elf.NT_PPC_TM_CPPR,
+        tm_ctar = elf.NT_PPC_TM_CTAR,
+        tm_cvmx = elf.NT_PPC_TM_CVMX,
+        tm_cvsx = elf.NT_PPC_TM_CVSX,
+        tm_spr = elf.NT_PPC_TM_SPR,
+        vmx = elf.NT_PPC_VMX,
+        vsx = elf.NT_PPC_VSX,
+        _,
+    };
 };
 
 pub const Relocation = enum(u16) {
@@ -135,4 +137,12 @@ pub const Relocation = enum(u16) {
     tprel32 = elf.R_PPC_TPREL32,
     uaddr16 = elf.R_PPC_UADDR16,
     uaddr32 = elf.R_PPC_UADDR32,
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        ppc_got = elf.DT_PPC_GOT,
+        ppc_num = elf.DT_PPC_NUM,
+        ppc_opt = elf.DT_PPC_OPT,
+    };
 };

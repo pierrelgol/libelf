@@ -2,74 +2,131 @@ const std = @import("std");
 const elf = @import("../elf.zig");
 const Mips = @This();
 
-pub const DynTags = enum(u32) {
-    aux_dynamic = elf.DT_MIPS_AUX_DYNAMIC,
-    base_address = elf.DT_MIPS_BASE_ADDRESS,
-    compact_size = elf.DT_MIPS_COMPACT_SIZE,
-    conflict = elf.DT_MIPS_CONFLICT,
-    conflictno = elf.DT_MIPS_CONFLICTNO,
-    cxx_flags = elf.DT_MIPS_CXX_FLAGS,
-    delta_class = elf.DT_MIPS_DELTA_CLASS,
-    delta_classsym = elf.DT_MIPS_DELTA_CLASSSYM,
-    delta_classsym_no = elf.DT_MIPS_DELTA_CLASSSYM_NO,
-    delta_class_no = elf.DT_MIPS_DELTA_CLASS_NO,
-    delta_instance = elf.DT_MIPS_DELTA_INSTANCE,
-    delta_instance_no = elf.DT_MIPS_DELTA_INSTANCE_NO,
-    delta_reloc = elf.DT_MIPS_DELTA_RELOC,
-    delta_reloc_no = elf.DT_MIPS_DELTA_RELOC_NO,
-    delta_sym = elf.DT_MIPS_DELTA_SYM,
-    delta_sym_no = elf.DT_MIPS_DELTA_SYM_NO,
-    dynstr_align = elf.DT_MIPS_DYNSTR_ALIGN,
-    flags = elf.DT_MIPS_FLAGS,
-    gotsym = elf.DT_MIPS_GOTSYM,
-    gp_value = elf.DT_MIPS_GP_VALUE,
-    hidden_gotidx = elf.DT_MIPS_HIDDEN_GOTIDX,
-    hipageno = elf.DT_MIPS_HIPAGENO,
-    ichecksum = elf.DT_MIPS_ICHECKSUM,
-    interface = elf.DT_MIPS_INTERFACE,
-    interface_size = elf.DT_MIPS_INTERFACE_SIZE,
-    iversion = elf.DT_MIPS_IVERSION,
-    liblist = elf.DT_MIPS_LIBLIST,
-    liblistno = elf.DT_MIPS_LIBLISTNO,
-    localpage_gotidx = elf.DT_MIPS_LOCALPAGE_GOTIDX,
-    local_gotidx = elf.DT_MIPS_LOCAL_GOTIDX,
-    local_gotno = elf.DT_MIPS_LOCAL_GOTNO,
-    msym = elf.DT_MIPS_MSYM,
-    num = elf.DT_MIPS_NUM,
-    options = elf.DT_MIPS_OPTIONS,
-    perf_suffix = elf.DT_MIPS_PERF_SUFFIX,
-    pixie_init = elf.DT_MIPS_PIXIE_INIT,
-    pltgot = elf.DT_MIPS_PLTGOT,
-    protected_gotidx = elf.DT_MIPS_PROTECTED_GOTIDX,
-    rld_map = elf.DT_MIPS_RLD_MAP,
-    rld_map_rel = elf.DT_MIPS_RLD_MAP_REL,
-    rld_text_resolve_addr = elf.DT_MIPS_RLD_TEXT_RESOLVE_ADDR,
-    rld_version = elf.DT_MIPS_RLD_VERSION,
-    rwplt = elf.DT_MIPS_RWPLT,
-    symbol_lib = elf.DT_MIPS_SYMBOL_LIB,
-    symtabno = elf.DT_MIPS_SYMTABNO,
-    time_stamp = elf.DT_MIPS_TIME_STAMP,
-    unrefextno = elf.DT_MIPS_UNREFEXTNO,
-    xhash = elf.DT_MIPS_XHASH,
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        aux_dynamic = elf.DT_MIPS_AUX_DYNAMIC,
+        base_address = elf.DT_MIPS_BASE_ADDRESS,
+        compact_size = elf.DT_MIPS_COMPACT_SIZE,
+        conflict = elf.DT_MIPS_CONFLICT,
+        conflictno = elf.DT_MIPS_CONFLICTNO,
+        cxx_flags = elf.DT_MIPS_CXX_FLAGS,
+        delta_class = elf.DT_MIPS_DELTA_CLASS,
+        delta_classsym = elf.DT_MIPS_DELTA_CLASSSYM,
+        delta_classsym_no = elf.DT_MIPS_DELTA_CLASSSYM_NO,
+        delta_class_no = elf.DT_MIPS_DELTA_CLASS_NO,
+        delta_instance = elf.DT_MIPS_DELTA_INSTANCE,
+        delta_instance_no = elf.DT_MIPS_DELTA_INSTANCE_NO,
+        delta_reloc = elf.DT_MIPS_DELTA_RELOC,
+        delta_reloc_no = elf.DT_MIPS_DELTA_RELOC_NO,
+        delta_sym = elf.DT_MIPS_DELTA_SYM,
+        delta_sym_no = elf.DT_MIPS_DELTA_SYM_NO,
+        dynstr_align = elf.DT_MIPS_DYNSTR_ALIGN,
+        flags = elf.DT_MIPS_FLAGS,
+        gotsym = elf.DT_MIPS_GOTSYM,
+        gp_value = elf.DT_MIPS_GP_VALUE,
+        hidden_gotidx = elf.DT_MIPS_HIDDEN_GOTIDX,
+        hipageno = elf.DT_MIPS_HIPAGENO,
+        ichecksum = elf.DT_MIPS_ICHECKSUM,
+        interface = elf.DT_MIPS_INTERFACE,
+        interface_size = elf.DT_MIPS_INTERFACE_SIZE,
+        iversion = elf.DT_MIPS_IVERSION,
+        liblist = elf.DT_MIPS_LIBLIST,
+        liblistno = elf.DT_MIPS_LIBLISTNO,
+        localpage_gotidx = elf.DT_MIPS_LOCALPAGE_GOTIDX,
+        local_gotidx = elf.DT_MIPS_LOCAL_GOTIDX,
+        local_gotno = elf.DT_MIPS_LOCAL_GOTNO,
+        msym = elf.DT_MIPS_MSYM,
+        num = elf.DT_MIPS_NUM,
+        options = elf.DT_MIPS_OPTIONS,
+        perf_suffix = elf.DT_MIPS_PERF_SUFFIX,
+        pixie_init = elf.DT_MIPS_PIXIE_INIT,
+        pltgot = elf.DT_MIPS_PLTGOT,
+        protected_gotidx = elf.DT_MIPS_PROTECTED_GOTIDX,
+        rld_map = elf.DT_MIPS_RLD_MAP,
+        rld_map_rel = elf.DT_MIPS_RLD_MAP_REL,
+        rld_text_resolve_addr = elf.DT_MIPS_RLD_TEXT_RESOLVE_ADDR,
+        rld_version = elf.DT_MIPS_RLD_VERSION,
+        rwplt = elf.DT_MIPS_RWPLT,
+        symbol_lib = elf.DT_MIPS_SYMBOL_LIB,
+        symtabno = elf.DT_MIPS_SYMTABNO,
+        time_stamp = elf.DT_MIPS_TIME_STAMP,
+        unrefextno = elf.DT_MIPS_UNREFEXTNO,
+        xhash = elf.DT_MIPS_XHASH,
+    };
 };
 
-pub const SectionFlags = enum(u32) {
-    addr = elf.SHF_MIPS_ADDR,
-    gprel = elf.SHF_MIPS_GPREL,
-    local = elf.SHF_MIPS_LOCAL,
-    merge = elf.SHF_MIPS_MERGE,
-    names = elf.SHF_MIPS_NAMES,
-    nodupe = elf.SHF_MIPS_NODUPE,
-    nostrip = elf.SHF_MIPS_NOSTRIP,
-    strings = elf.SHF_MIPS_STRINGS,
-};
+pub const Section = struct {
+    pub const Type = enum(u32) {
+        abiflags = elf.SHT_MIPS_ABIFLAGS,
+        auxsym = elf.SHT_MIPS_AUXSYM,
+        conflict = elf.SHT_MIPS_CONFLICT,
+        content = elf.SHT_MIPS_CONTENT,
+        debug = elf.SHT_MIPS_DEBUG,
+        deltaclass = elf.SHT_MIPS_DELTACLASS,
+        deltadecl = elf.SHT_MIPS_DELTADECL,
+        deltainst = elf.SHT_MIPS_DELTAINST,
+        deltasym = elf.SHT_MIPS_DELTASYM,
+        dense = elf.SHT_MIPS_DENSE,
+        dwarf = elf.SHT_MIPS_DWARF,
+        eh_region = elf.SHT_MIPS_EH_REGION,
+        events = elf.SHT_MIPS_EVENTS,
+        extsym = elf.SHT_MIPS_EXTSYM,
+        fdesc = elf.SHT_MIPS_FDESC,
+        gptab = elf.SHT_MIPS_GPTAB,
+        iface = elf.SHT_MIPS_IFACE,
+        liblist = elf.SHT_MIPS_LIBLIST,
+        line = elf.SHT_MIPS_LINE,
+        locstr = elf.SHT_MIPS_LOCSTR,
+        locsym = elf.SHT_MIPS_LOCSYM,
+        msym = elf.SHT_MIPS_MSYM,
+        options = elf.SHT_MIPS_OPTIONS,
+        optsym = elf.SHT_MIPS_OPTSYM,
+        package = elf.SHT_MIPS_PACKAGE,
+        packsym = elf.SHT_MIPS_PACKSYM,
+        pdesc = elf.SHT_MIPS_PDESC,
+        pdr_exception = elf.SHT_MIPS_PDR_EXCEPTION,
+        pixie = elf.SHT_MIPS_PIXIE,
+        reginfo = elf.SHT_MIPS_REGINFO,
+        reld = elf.SHT_MIPS_RELD,
+        rfdesc = elf.SHT_MIPS_RFDESC,
+        shdr = elf.SHT_MIPS_SHDR,
+        symbol_lib = elf.SHT_MIPS_SYMBOL_LIB,
+        translate = elf.SHT_MIPS_TRANSLATE,
+        ucode = elf.SHT_MIPS_UCODE,
+        whirl = elf.SHT_MIPS_WHIRL,
+        xhash = elf.SHT_MIPS_XHASH,
+        xlate = elf.SHT_MIPS_XLATE,
+        xlate_debug = elf.SHT_MIPS_XLATE_DEBUG,
+        xlate_old = elf.SHT_MIPS_XLATE_OLD,
+    };
 
-pub const SectionIndex = enum(u16) {
-    acommon = elf.SHN_MIPS_ACOMMON,
-    data = elf.SHN_MIPS_DATA,
-    scommon = elf.SHN_MIPS_SCOMMON,
-    sundefined = elf.SHN_MIPS_SUNDEFINED,
-    text = elf.SHN_MIPS_TEXT,
+    pub const Flags = enum(u32) {
+        addr = elf.SHF_MIPS_ADDR,
+        gprel = elf.SHF_MIPS_GPREL,
+        local = elf.SHF_MIPS_LOCAL,
+        merge = elf.SHF_MIPS_MERGE,
+        names = elf.SHF_MIPS_NAMES,
+        nodupe = elf.SHF_MIPS_NODUPE,
+        nostrip = elf.SHF_MIPS_NOSTRIP,
+        strings = elf.SHF_MIPS_STRINGS,
+    };
+
+    pub const Index = enum(u16) {
+        acommon = elf.SHN_MIPS_ACOMMON,
+        data = elf.SHN_MIPS_DATA,
+        scommon = elf.SHN_MIPS_SCOMMON,
+        sundefined = elf.SHN_MIPS_SUNDEFINED,
+        text = elf.SHN_MIPS_TEXT,
+    };
+
+    pub const Sto = enum(u8) {
+        default = elf.STO_MIPS_DEFAULT,
+        hidden = elf.STO_MIPS_HIDDEN,
+        internal = elf.STO_MIPS_INTERNAL,
+        plt = elf.STO_MIPS_PLT,
+        protected = elf.STO_MIPS_PROTECTED,
+        sc_align_unused = elf.STO_MIPS_SC_ALIGN_UNUSED,
+    };
 };
 
 pub const Arch = enum(u32) {
@@ -192,24 +249,19 @@ pub const Flags = struct {
     pub const FLAGS1_ODDSPREG = elf.MIPS_AFL_FLAGS1_ODDSPREG;
 };
 
-pub const NoteType = enum(u16) {
-    dsp = elf.NT_MIPS_DSP,
-    fp_mode = elf.NT_MIPS_FP_MODE,
-    msa = elf.NT_MIPS_MSA,
-    _,
+pub const Note = struct {
+    pub const Type = enum(u16) {
+        dsp = elf.NT_MIPS_DSP,
+        fp_mode = elf.NT_MIPS_FP_MODE,
+        msa = elf.NT_MIPS_MSA,
+        _,
+    };
 };
 
-pub const SymbolBinding = enum(u8) {
-    split_common = elf.STB_MIPS_SPLIT_COMMON,
-};
-
-pub const Sto = enum(u8) {
-    default = elf.STO_MIPS_DEFAULT,
-    hidden = elf.STO_MIPS_HIDDEN,
-    internal = elf.STO_MIPS_INTERNAL,
-    plt = elf.STO_MIPS_PLT,
-    protected = elf.STO_MIPS_PROTECTED,
-    sc_align_unused = elf.STO_MIPS_SC_ALIGN_UNUSED,
+pub const Symbol = struct {
+    pub const Binding = enum(u8) {
+        split_common = elf.STB_MIPS_SPLIT_COMMON,
+    };
 };
 
 pub const OptionKind = enum(u8) {
@@ -227,18 +279,20 @@ pub const OptionKind = enum(u8) {
 
 pub const ExceptionFlags = enum(u32) {
     dismiss = elf.OEX_DISMISS,
-    fpdbug = elf.OEX_FPDBUG,
-    fpu_div0 = elf.OEX_FPU_DIV0,
-    fpu_inex = elf.OEX_FPU_INEX,
-    fpu_inval = elf.OEX_FPU_INVAL,
-    fpu_max = elf.OEX_FPU_MAX,
-    fpu_min = elf.OEX_FPU_MIN,
-    fpu_oflo = elf.OEX_FPU_OFLO,
-    fpu_uflo = elf.OEX_FPU_UFLO,
     page0 = elf.OEX_PAGE0,
-    // precisefp = elf.OEX_PRECISEFP,
+    precisefp = elf.OEX_PRECISEFP,
     smm = elf.OEX_SMM,
     _,
+    pub const Fp = enum(u32) {
+        dbug = elf.OEX_FPDBUG,
+        u_div0 = elf.OEX_FPU_DIV0,
+        u_inex = elf.OEX_FPU_INEX,
+        u_inval = elf.OEX_FPU_INVAL,
+        u_max = elf.OEX_FPU_MAX,
+        u_min = elf.OEX_FPU_MIN,
+        u_oflo = elf.OEX_FPU_OFLO,
+        u_uflo = elf.OEX_FPU_UFLO,
+    };
 };
 
 pub const HwAttrs0 = enum(u32) {
@@ -266,9 +320,18 @@ pub const PaddingFlags = enum(u8) {
     _,
 };
 
-pub const ProgramFlags = enum(u32) {
-    local = elf.PF_MIPS_LOCAL,
-    _,
+pub const Program = struct {
+    pub const Flags = enum(u32) {
+        local = elf.PF_MIPS_LOCAL,
+        _,
+    };
+
+    pub const Type = enum(u32) {
+        mips_abiflags = elf.PT_MIPS_ABIFLAGS,
+        mips_options = elf.PT_MIPS_OPTIONS,
+        mips_reginfo = elf.PT_MIPS_REGINFO,
+        mips_rtproc = elf.PT_MIPS_RTPROC,
+    };
 };
 
 pub const RuntimeFlags = enum(u32) {
@@ -289,57 +352,6 @@ pub const RuntimeFlags = enum(u32) {
     rld_order_safe = elf.RHF_RLD_ORDER_SAFE,
     sgi_only = elf.RHF_SGI_ONLY,
     _,
-};
-
-pub const SectionType = enum(u32) {
-    abiflags = elf.SHT_MIPS_ABIFLAGS,
-    auxsym = elf.SHT_MIPS_AUXSYM,
-    conflict = elf.SHT_MIPS_CONFLICT,
-    content = elf.SHT_MIPS_CONTENT,
-    debug = elf.SHT_MIPS_DEBUG,
-    deltaclass = elf.SHT_MIPS_DELTACLASS,
-    deltadecl = elf.SHT_MIPS_DELTADECL,
-    deltainst = elf.SHT_MIPS_DELTAINST,
-    deltasym = elf.SHT_MIPS_DELTASYM,
-    dense = elf.SHT_MIPS_DENSE,
-    dwarf = elf.SHT_MIPS_DWARF,
-    eh_region = elf.SHT_MIPS_EH_REGION,
-    events = elf.SHT_MIPS_EVENTS,
-    extsym = elf.SHT_MIPS_EXTSYM,
-    fdesc = elf.SHT_MIPS_FDESC,
-    gptab = elf.SHT_MIPS_GPTAB,
-    iface = elf.SHT_MIPS_IFACE,
-    liblist = elf.SHT_MIPS_LIBLIST,
-    line = elf.SHT_MIPS_LINE,
-    locstr = elf.SHT_MIPS_LOCSTR,
-    locsym = elf.SHT_MIPS_LOCSYM,
-    msym = elf.SHT_MIPS_MSYM,
-    options = elf.SHT_MIPS_OPTIONS,
-    optsym = elf.SHT_MIPS_OPTSYM,
-    package = elf.SHT_MIPS_PACKAGE,
-    packsym = elf.SHT_MIPS_PACKSYM,
-    pdesc = elf.SHT_MIPS_PDESC,
-    pdr_exception = elf.SHT_MIPS_PDR_EXCEPTION,
-    pixie = elf.SHT_MIPS_PIXIE,
-    reginfo = elf.SHT_MIPS_REGINFO,
-    reld = elf.SHT_MIPS_RELD,
-    rfdesc = elf.SHT_MIPS_RFDESC,
-    shdr = elf.SHT_MIPS_SHDR,
-    symbol_lib = elf.SHT_MIPS_SYMBOL_LIB,
-    translate = elf.SHT_MIPS_TRANSLATE,
-    ucode = elf.SHT_MIPS_UCODE,
-    whirl = elf.SHT_MIPS_WHIRL,
-    xhash = elf.SHT_MIPS_XHASH,
-    xlate = elf.SHT_MIPS_XLATE,
-    xlate_debug = elf.SHT_MIPS_XLATE_DEBUG,
-    xlate_old = elf.SHT_MIPS_XLATE_OLD,
-};
-
-pub const ProgramType = enum(u32) {
-    mips_abiflags = elf.PT_MIPS_ABIFLAGS,
-    mips_options = elf.PT_MIPS_OPTIONS,
-    mips_reginfo = elf.PT_MIPS_REGINFO,
-    mips_rtproc = elf.PT_MIPS_RTPROC,
 };
 
 pub const Relocation = struct {

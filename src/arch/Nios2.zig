@@ -50,3 +50,9 @@ pub const Relocation = enum(u16) {
     u16 = 2,
     ujmp = 18,
 };
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        nios2_gp = elf.DT_NIOS2_GP,
+    };
+};

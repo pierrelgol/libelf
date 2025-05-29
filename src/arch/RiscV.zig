@@ -2,30 +2,40 @@ const std = @import("std");
 const elf = @import("../elf.zig");
 const RiscV = @This();
 
-pub const NoteType = enum(u16) {
-    csr = elf.NT_RISCV_CSR,
-    vector = elf.NT_RISCV_VECTOR,
-    _,
+pub const Note = struct {
+    pub const Type = enum(u16) {
+        csr = elf.NT_RISCV_CSR,
+        vector = elf.NT_RISCV_VECTOR,
+        _,
+    };
 };
 
-pub const SectionType = enum(u32) {
-    attributes = elf.SHT_RISCV_ATTRIBUTES,
-};
+pub const Section = struct {
+    pub const Type = enum(u32) {
+        attributes = elf.SHT_RISCV_ATTRIBUTES,
+    };
 
-pub const Sto = enum(u8) {
-    variant_cc = elf.STO_RISCV_VARIANT_CC,
+    pub const Sto = enum(u8) {
+        variant_cc = elf.STO_RISCV_VARIANT_CC,
+    };
 };
 
 pub const Arch = struct {
-    pub const Flags = enum(u64) {
-        float_abi = elf.EF_RISCV_FLOAT_ABI,
-        float_abi_double = elf.EF_RISCV_FLOAT_ABI_DOUBLE,
-        // float_abi_quad = elf.EF_RISCV_FLOAT_ABI_QUAD,
-        float_abi_single = elf.EF_RISCV_FLOAT_ABI_SINGLE,
-        float_abi_soft = elf.EF_RISCV_FLOAT_ABI_SOFT,
-        rvc = elf.EF_RISCV_RVC,
-        rve = elf.EF_RISCV_RVE,
-        tso = elf.EF_RISCV_TSO,
+    pub const Flags = struct {
+        pub const float_abi = elf.EF_RISCV_FLOAT_ABI;
+        pub const float_abi_double = elf.EF_RISCV_FLOAT_ABI_DOUBLE;
+        pub const float_abi_quad = elf.EF_RISCV_FLOAT_ABI_QUAD;
+        pub const float_abi_single = elf.EF_RISCV_FLOAT_ABI_SINGLE;
+        pub const float_abi_soft = elf.EF_RISCV_FLOAT_ABI_SOFT;
+        pub const rvc = elf.EF_RISCV_RVC;
+        pub const rve = elf.EF_RISCV_RVE;
+        pub const tso = elf.EF_RISCV_TSO;
+    };
+};
+
+pub const Program = struct {
+    pub const Type = enum(u32) {
+        riscv_attributes = elf.PT_RISCV_ATTRIBUTES,
         _,
     };
 };
@@ -90,4 +100,10 @@ pub const Relocation = enum(u16) {
     tprel_lo12_i = elf.R_RISCV_TPREL_LO12_I,
     tprel_lo12_s = elf.R_RISCV_TPREL_LO12_S,
     tprel_s = elf.R_RISCV_TPREL_S,
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        riscv_variant_cc = elf.DT_RISCV_VARIANT_CC,
+    };
 };

@@ -914,6 +914,11 @@ pub const OPAD_SYMBOL = 0x4;
 pub const PF_ARM_ABS = 0x40000000;
 pub const PF_ARM_PI = 0x20000000;
 pub const PF_ARM_SB = 0x10000000;
+pub const PF_R = (1 << 2);
+pub const PF_W = (1 << 1);
+pub const PF_X = (1 << 0);
+pub const PF_MASKOS = 0x0ff00000;
+pub const PF_MASKPROC = 0xf0000000;
 
 pub const PF_HP_CODE = 0x01000000;
 pub const PF_HP_FAR_SHARED = 0x00200000;
@@ -924,11 +929,8 @@ pub const PF_HP_PAGE_SIZE = 0x00100000;
 pub const PF_HP_SBP = 0x08000000;
 
 pub const PF_IA_64_NORECOV = 0x80000000;
-
 pub const PF_MIPS_LOCAL = 0x10000000;
-
 pub const PF_PARISC_SBP = 0x08000000;
-
 pub const PN_XNUM = 0xffff;
 
 pub const PPC64_OPT_LOCALENTRY = 4;
@@ -3660,14 +3662,12 @@ pub inline fn EF_ARM_EABI_VERSION(flags: u32) u32 {
     return flags & EF_ARM_EABIMASK;
 }
 
-// pub const Val = enum(u8) {
-//     GNU_MIPS_ABI_FP_64 = 6,
-//     GNU_MIPS_ABI_FP_64A = 7,
-//     GNU_MIPS_ABI_FP_ANY = 0,
-//     GNU_MIPS_ABI_FP_DOUBLE = 1,
-//     GNU_MIPS_ABI_FP_MAX = 7,
-//     GNU_MIPS_ABI_FP_OLD_64 = 4,
-//     GNU_MIPS_ABI_FP_SINGLE = 2,
-//     GNU_MIPS_ABI_FP_SOFT = 3,
-//     GNU_MIPS_ABI_FP_XX = 5,
-// };
+pub const VAL_GNU_MIPS_ABI_FP_64 = 6;
+pub const VAL_GNU_MIPS_ABI_FP_64A = 7;
+pub const VAL_GNU_MIPS_ABI_FP_ANY = 0;
+pub const VAL_GNU_MIPS_ABI_FP_DOUBLE = 1;
+pub const VAL_GNU_MIPS_ABI_FP_MAX = 7;
+pub const VAL_GNU_MIPS_ABI_FP_OLD_64 = 4;
+pub const VAL_GNU_MIPS_ABI_FP_SINGLE = 2;
+pub const VAL_GNU_MIPS_ABI_FP_SOFT = 3;
+pub const VAL_GNU_MIPS_ABI_FP_XX = 5;

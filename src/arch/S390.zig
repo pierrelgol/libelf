@@ -9,23 +9,25 @@ pub const Arch = packed struct {
     };
 };
 
-pub const NoteType = enum(u16) {
-    ctrs = elf.NT_S390_CTRS,
-    gs_bc = elf.NT_S390_GS_BC,
-    gs_cb = elf.NT_S390_GS_CB,
-    high_gprs = elf.NT_S390_HIGH_GPRS,
-    last_break = elf.NT_S390_LAST_BREAK,
-    prefix = elf.NT_S390_PREFIX,
-    pv_cpu_data = elf.NT_S390_PV_CPU_DATA,
-    ri_cb = elf.NT_S390_RI_CB,
-    system_call = elf.NT_S390_SYSTEM_CALL,
-    tdb = elf.NT_S390_TDB,
-    timer = elf.NT_S390_TIMER,
-    todcmp = elf.NT_S390_TODCMP,
-    todpreg = elf.NT_S390_TODPREG,
-    vxrs_high = elf.NT_S390_VXRS_HIGH,
-    vxrs_low = elf.NT_S390_VXRS_LOW,
-    _,
+pub const Note = struct {
+    pub const Type = enum(u16) {
+        ctrs = elf.NT_S390_CTRS,
+        gs_bc = elf.NT_S390_GS_BC,
+        gs_cb = elf.NT_S390_GS_CB,
+        high_gprs = elf.NT_S390_HIGH_GPRS,
+        last_break = elf.NT_S390_LAST_BREAK,
+        prefix = elf.NT_S390_PREFIX,
+        pv_cpu_data = elf.NT_S390_PV_CPU_DATA,
+        ri_cb = elf.NT_S390_RI_CB,
+        system_call = elf.NT_S390_SYSTEM_CALL,
+        tdb = elf.NT_S390_TDB,
+        timer = elf.NT_S390_TIMER,
+        todcmp = elf.NT_S390_TODCMP,
+        todpreg = elf.NT_S390_TODPREG,
+        vxrs_high = elf.NT_S390_VXRS_HIGH,
+        vxrs_low = elf.NT_S390_VXRS_LOW,
+        _,
+    };
 };
 
 pub const Relocation = enum(u8) {

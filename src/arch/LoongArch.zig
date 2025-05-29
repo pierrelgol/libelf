@@ -13,15 +13,17 @@ pub const Arch = struct {
     };
 };
 
-pub const NoteType = enum(u16) {
-    cpucfg = elf.NT_LOONGARCH_CPUCFG,
-    csr = elf.NT_LOONGARCH_CSR,
-    hw_break = elf.NT_LOONGARCH_HW_BREAK,
-    hw_watch = elf.NT_LOONGARCH_HW_WATCH,
-    lasx = elf.NT_LOONGARCH_LASX,
-    lbt = elf.NT_LOONGARCH_LBT,
-    lsx = elf.NT_LOONGARCH_LSX,
-    _,
+pub const Node = struct {
+    pub const Type = enum(u16) {
+        cpucfg = elf.NT_LOONGARCH_CPUCFG,
+        csr = elf.NT_LOONGARCH_CSR,
+        hw_break = elf.NT_LOONGARCH_HW_BREAK,
+        hw_watch = elf.NT_LOONGARCH_HW_WATCH,
+        lasx = elf.NT_LOONGARCH_LASX,
+        lbt = elf.NT_LOONGARCH_LBT,
+        lsx = elf.NT_LOONGARCH_LSX,
+        _,
+    };
 };
 
 pub const Relocation = enum(u16) {

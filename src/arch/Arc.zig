@@ -11,8 +11,10 @@ pub const Arch = packed struct {
     };
 };
 
-pub const SectionType = enum(u32) {
-    attributes = elf.SHT_ARC_ATTRIBUTES,
+pub const Section = struct {
+    pub const Type = enum(u32) {
+        attributes = elf.SHT_ARC_ATTRIBUTES,
+    };
 };
 
 pub const Relocation = enum(u16) {

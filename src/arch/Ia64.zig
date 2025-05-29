@@ -11,19 +11,31 @@ pub const Arch = struct {
     };
 };
 
-pub const ProgramFlags = enum(u32) {
-    norecov = elf.PF_IA_64_NORECOV,
-    _,
+pub const Program = struct {
+    pub const Flags = enum(u32) {
+        norecov = elf.PF_IA_64_NORECOV,
+        _,
+    };
+
+    pub const Type = enum(u32) {
+        ia_64_archext = elf.PT_IA_64_ARCHEXT,
+        ia_64_hp_hsl_anot = elf.PT_IA_64_HP_HSL_ANOT,
+        ia_64_hp_opt_anot = elf.PT_IA_64_HP_OPT_ANOT,
+        ia_64_hp_stack = elf.PT_IA_64_HP_STACK,
+        ia_64_unwind = elf.PT_IA_64_UNWIND,
+    };
 };
 
-pub const SectionFlags = enum(u32) {
-    norecov = elf.SHF_IA_64_NORECOV,
-    short = elf.SHF_IA_64_SHORT,
-};
+pub const Section = struct {
+    pub const Flags = enum(u32) {
+        norecov = elf.SHF_IA_64_NORECOV,
+        short = elf.SHF_IA_64_SHORT,
+    };
 
-pub const SectionType = enum(u32) {
-    ext = elf.SHT_IA_64_EXT,
-    unwind = elf.SHT_IA_64_UNWIND,
+    pub const Type = enum(u32) {
+        ext = elf.SHT_IA_64_EXT,
+        unwind = elf.SHT_IA_64_UNWIND,
+    };
 };
 
 pub const Relocation = enum(u16) {
@@ -108,4 +120,11 @@ pub const Relocation = enum(u16) {
     tprel64i = elf.R_IA64_TPREL64I,
     tprel64lsb = elf.R_IA64_TPREL64LSB,
     tprel64msb = elf.R_IA64_TPREL64MSB,
+};
+
+pub const Dyn = struct {
+    pub const Tags = enum(u32) {
+        ia_64_num = elf.DT_IA_64_NUM,
+        ia_64_plt_reserve = elf.DT_IA_64_PLT_RESERVE,
+    };
 };

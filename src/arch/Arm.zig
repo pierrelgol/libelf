@@ -4,13 +4,9 @@ const Arm = @This();
 
 pub const Arch = struct {
     pub const Flags = enum(u32) {
-        abi_float_hard = elf.EF_ARM_ABI_FLOAT_HARD,
-        abi_float_soft = elf.EF_ARM_ABI_FLOAT_SOFT,
         align8 = elf.EF_ARM_ALIGN8,
-        apcs_26 = elf.EF_ARM_APCS_26,
-        apcs_float = elf.EF_ARM_APCS_FLOAT,
         be8 = elf.EF_ARM_BE8,
-        // dynsymsusesegidx = elf.EF_ARM_DYNSYMSUSESEGIDX,
+        dynsymsusesegidx = elf.EF_ARM_DYNSYMSUSESEGIDX,
         eabimask = elf.EF_ARM_EABIMASK,
         eabi_unknown = elf.EF_ARM_EABI_UNKNOWN,
         eabi_ver1 = elf.EF_ARM_EABI_VER1,
@@ -19,42 +15,64 @@ pub const Arch = struct {
         eabi_ver4 = elf.EF_ARM_EABI_VER4,
         eabi_ver5 = elf.EF_ARM_EABI_VER5,
         hasentry = elf.EF_ARM_HASENTRY,
-        interwork = elf.EF_ARM_INTERWORK,
         le8 = elf.EF_ARM_LE8,
-        // mapsymsfirst = elf.EF_ARM_MAPSYMSFIRST,
+        mapsymsfirst = elf.EF_ARM_MAPSYMSFIRST,
         maverick_float = elf.EF_ARM_MAVERICK_FLOAT,
         new_abi = elf.EF_ARM_NEW_ABI,
         old_abi = elf.EF_ARM_OLD_ABI,
         pic = elf.EF_ARM_PIC,
         relexec = elf.EF_ARM_RELEXEC,
-        // soft_float = elf.EF_ARM_SOFT_FLOAT,
-        // symsaresorted = elf.EF_ARM_SYMSARESORTED,
-        // vfp_float = elf.EF_ARM_VFP_FLOAT,
+        soft_float = elf.EF_ARM_SOFT_FLOAT,
+        symsaresorted = elf.EF_ARM_SYMSARESORTED,
+        vfp_float = elf.EF_ARM_VFP_FLOAT,
+        _,
+
+        pub const interwork = elf.EF_ARM_INTERWORK;
+
+        pub const Abi = enum(u32) {
+            abi_float_hard = elf.EF_ARM_ABI_FLOAT_HARD,
+            abi_float_soft = elf.EF_ARM_ABI_FLOAT_SOFT,
+        };
+
+        pub const Apc = enum(u32) {
+            apcs_26 = elf.EF_ARM_APCS_26,
+            apcs_float = elf.EF_ARM_APCS_FLOAT,
+        };
+    };
+};
+
+pub const Program = struct {
+    pub const Type = enum(u32) {
+        arm_exidx = elf.PT_ARM_EXIDX,
+        _,
+    };
+
+    pub const Flags = enum(u32) {
+        abs = elf.PF_ARM_ABS,
+        pi = elf.PF_ARM_PI,
+        sb = elf.PF_ARM_SB,
         _,
     };
 };
 
-pub const ProgramFlags = enum(u32) {
-    abs = elf.PF_ARM_ABS,
-    pi = elf.PF_ARM_PI,
-    sb = elf.PF_ARM_SB,
-    _,
+pub const Section = struct {
+    pub const Flags = enum(u32) {
+        comdef = elf.SHF_ARM_COMDEF,
+        entrysect = elf.SHF_ARM_ENTRYSECT,
+    };
+
+    pub const Type = enum(u32) {
+        attributes = elf.SHT_ARM_ATTRIBUTES,
+        exidx = elf.SHT_ARM_EXIDX,
+        preemptmap = elf.SHT_ARM_PREEMPTMAP,
+    };
 };
 
-pub const SectionFlags = enum(u32) {
-    comdef = elf.SHF_ARM_COMDEF,
-    entrysect = elf.SHF_ARM_ENTRYSECT,
-};
-
-pub const SectionType = enum(u32) {
-    attributes = elf.SHT_ARM_ATTRIBUTES,
-    exidx = elf.SHT_ARM_EXIDX,
-    preemptmap = elf.SHT_ARM_PREEMPTMAP,
-};
-
-pub const SymbolType = enum(u8) {
-    @"16bit" = elf.STT_ARM_16BIT,
-    tfunc = elf.STT_ARM_TFUNC,
+pub const Symbol = struct {
+    pub const Type = enum(u8) {
+        @"16bit" = elf.STT_ARM_16BIT,
+        tfunc = elf.STT_ARM_TFUNC,
+    };
 };
 
 pub const Relocation = enum(u16) {
