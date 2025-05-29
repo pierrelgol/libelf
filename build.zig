@@ -37,8 +37,6 @@ pub fn build(b: *std.Build) void {
 
     run_cmd.step.dependOn(b.getInstallStep());
 
-    run_cmd.addArg("/home/pollivie/workspace/06-2025/libelf/zig-out/bin/app");
-
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }
