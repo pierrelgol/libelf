@@ -3,5 +3,6 @@ pub const Elf = @import("Elf.zig");
 const testing = std.testing;
 
 comptime {
-    testing.refAllDecls(Elf);
+    @setEvalBranchQuota(200_00);
+    testing.refAllDeclsRecursive(Elf);
 }

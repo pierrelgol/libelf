@@ -3377,7 +3377,7 @@ pub const Elf64_Phdr = extern struct {
 
 pub const Elf32_Dyn = extern struct {
     d_tag: Elf32_Sword,
-    d_un: union {
+    d_un: extern union {
         d_val: Elf32_Word,
         d_ptr: Elf32_Addr,
     },
@@ -3385,7 +3385,7 @@ pub const Elf32_Dyn = extern struct {
 
 pub const Elf64_Dyn = extern struct {
     d_tag: Elf64_Sxword,
-    d_un: union {
+    d_un: extern union {
         d_val: Elf64_Xword,
         d_ptr: Elf64_Addr,
     },
@@ -3455,14 +3455,14 @@ pub const Elf64_Vernaux = extern struct {
 
 pub const Elf32_auxv_t = extern struct {
     a_type: u32,
-    a_un: union {
+    a_un: extern union {
         a_val: u32,
     },
 };
 
 pub const Elf64_auxv_t = extern struct {
     a_type: u64,
-    a_un: union {
+    a_un: extern union {
         a_val: u64,
     },
 };
@@ -3496,11 +3496,11 @@ pub const Elf64_Move = extern struct {
 };
 
 pub const Elf32_gptab = extern union {
-    gt_header: struct {
+    gt_header: extern struct {
         gt_current_g_value: Elf32_Word,
         gt_unused: Elf32_Word,
     },
-    gt_entry: struct {
+    gt_entry: extern struct {
         gt_g_value: Elf32_Word,
         gt_bytes: Elf32_Word,
     },
@@ -3660,14 +3660,14 @@ pub inline fn EF_ARM_EABI_VERSION(flags: u32) u32 {
     return flags & EF_ARM_EABIMASK;
 }
 
-pub const Val = enum(u8) {
-    GNU_MIPS_ABI_FP_64 = 6,
-    GNU_MIPS_ABI_FP_64A = 7,
-    GNU_MIPS_ABI_FP_ANY = 0,
-    GNU_MIPS_ABI_FP_DOUBLE = 1,
-    GNU_MIPS_ABI_FP_MAX = 7,
-    GNU_MIPS_ABI_FP_OLD_64 = 4,
-    GNU_MIPS_ABI_FP_SINGLE = 2,
-    GNU_MIPS_ABI_FP_SOFT = 3,
-    GNU_MIPS_ABI_FP_XX = 5,
-};
+// pub const Val = enum(u8) {
+//     GNU_MIPS_ABI_FP_64 = 6,
+//     GNU_MIPS_ABI_FP_64A = 7,
+//     GNU_MIPS_ABI_FP_ANY = 0,
+//     GNU_MIPS_ABI_FP_DOUBLE = 1,
+//     GNU_MIPS_ABI_FP_MAX = 7,
+//     GNU_MIPS_ABI_FP_OLD_64 = 4,
+//     GNU_MIPS_ABI_FP_SINGLE = 2,
+//     GNU_MIPS_ABI_FP_SOFT = 3,
+//     GNU_MIPS_ABI_FP_XX = 5,
+// };

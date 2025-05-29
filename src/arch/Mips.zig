@@ -236,7 +236,7 @@ pub const ExceptionFlags = enum(u32) {
     fpu_oflo = elf.OEX_FPU_OFLO,
     fpu_uflo = elf.OEX_FPU_UFLO,
     page0 = elf.OEX_PAGE0,
-    precisefp = elf.OEX_PRECISEFP,
+    // precisefp = elf.OEX_PRECISEFP,
     smm = elf.OEX_SMM,
     _,
 };
