@@ -2287,6 +2287,7 @@ pub const R_PARISC_TPREL16WF = 222;
 pub const R_PARISC_TPREL21L = 154;
 pub const R_PARISC_TPREL32 = 153;
 pub const R_PARISC_TPREL64 = 216;
+
 pub const R_PPC64_ADDR14 = R_PPC_ADDR14;
 pub const R_PPC64_ADDR14_BRNTAKEN = R_PPC_ADDR14_BRNTAKEN;
 pub const R_PPC64_ADDR14_BRTAKEN = R_PPC_ADDR14_BRTAKEN;
@@ -2406,6 +2407,7 @@ pub const R_PPC64_TPREL64 = 73;
 pub const R_PPC64_UADDR16 = R_PPC_UADDR16;
 pub const R_PPC64_UADDR32 = R_PPC_UADDR32;
 pub const R_PPC64_UADDR64 = 43;
+
 pub const R_PPC_ADDR14 = 7;
 pub const R_PPC_ADDR14_BRNTAKEN = 9;
 pub const R_PPC_ADDR14_BRTAKEN = 8;
@@ -2501,6 +2503,7 @@ pub const R_PPC_TPREL16_LO = 70;
 pub const R_PPC_TPREL32 = 73;
 pub const R_PPC_UADDR16 = 25;
 pub const R_PPC_UADDR32 = 24;
+
 pub const R_RISCV_32 = 1;
 pub const R_RISCV_32_PCREL = 57;
 pub const R_RISCV_64 = 2;
@@ -2560,6 +2563,7 @@ pub const R_RISCV_TPREL_I = 49;
 pub const R_RISCV_TPREL_LO12_I = 30;
 pub const R_RISCV_TPREL_LO12_S = 31;
 pub const R_RISCV_TPREL_S = 50;
+
 pub const R_SH_ALIGN = 29;
 pub const R_SH_CODE = 30;
 pub const R_SH_COPY = 162;
@@ -2598,6 +2602,7 @@ pub const R_SH_TLS_LD_32 = 145;
 pub const R_SH_TLS_LE_32 = 148;
 pub const R_SH_TLS_TPOFF32 = 151;
 pub const R_SH_USES = 27;
+
 pub const R_SPARC_10 = 30;
 pub const R_SPARC_11 = 31;
 pub const R_SPARC_13 = 11;
@@ -2693,6 +2698,7 @@ pub const R_SPARC_WDISP19 = 41;
 pub const R_SPARC_WDISP22 = 8;
 pub const R_SPARC_WDISP30 = 7;
 pub const R_SPARC_WPLT30 = 18;
+
 pub const R_TILEGX_16 = 3;
 pub const R_TILEGX_16_PCREL = 7;
 pub const R_TILEGX_32 = 2;
@@ -2814,6 +2820,7 @@ pub const R_TILEGX_TLS_GD_CALL = 112;
 pub const R_TILEGX_TLS_IE_LOAD = 117;
 pub const R_TILEGX_TLS_TPOFF32 = 111;
 pub const R_TILEGX_TLS_TPOFF64 = 108;
+
 pub const R_TILEPRO_16 = 2;
 pub const R_TILEPRO_16_PCREL = 5;
 pub const R_TILEPRO_32 = 1;
@@ -2906,6 +2913,7 @@ pub const R_TILEPRO_TLS_DTPOFF32 = 83;
 pub const R_TILEPRO_TLS_GD_CALL = 60;
 pub const R_TILEPRO_TLS_IE_LOAD = 65;
 pub const R_TILEPRO_TLS_TPOFF32 = 84;
+
 pub const R_X86_64_16 = 12;
 pub const R_X86_64_32 = 10;
 pub const R_X86_64_32S = 11;
@@ -2948,23 +2956,35 @@ pub const R_X86_64_TLSGD = 19;
 pub const R_X86_64_TLSLD = 20;
 pub const R_X86_64_TPOFF32 = 23;
 pub const R_X86_64_TPOFF64 = 18;
+
 pub const SELFMAG = 4;
+
 pub const SHF_ALLOC = (1 << 1);
-pub const SHF_ALPHA_GPREL = 0x10000000;
-pub const SHF_ARM_COMDEF = 0x80000000;
-pub const SHF_ARM_ENTRYSECT = 0x10000000;
 pub const SHF_COMPRESSED = (1 << 11);
 pub const SHF_EXCLUDE = (1 << 31);
 pub const SHF_EXECINSTR = (1 << 2);
-pub const SHF_GNU_RETAIN = (1 << 21);
 pub const SHF_GROUP = (1 << 9);
-pub const SHF_IA_64_NORECOV = 0x20000000;
-pub const SHF_IA_64_SHORT = 0x10000000;
 pub const SHF_INFO_LINK = (1 << 6);
 pub const SHF_LINK_ORDER = (1 << 7);
 pub const SHF_MASKOS = 0x0ff00000;
 pub const SHF_MASKPROC = 0xf0000000;
 pub const SHF_MERGE = (1 << 4);
+pub const SHF_ORDERED = (1 << 30);
+pub const SHF_OS_NONCONFORMING = (1 << 8);
+pub const SHF_STRINGS = (1 << 5);
+pub const SHF_TLS = (1 << 10);
+pub const SHF_WRITE = (1 << 0);
+
+pub const SHF_ALPHA_GPREL = 0x10000000;
+
+pub const SHF_ARM_COMDEF = 0x80000000;
+pub const SHF_ARM_ENTRYSECT = 0x10000000;
+
+pub const SHF_GNU_RETAIN = (1 << 21);
+
+pub const SHF_IA_64_NORECOV = 0x20000000;
+pub const SHF_IA_64_SHORT = 0x10000000;
+
 pub const SHF_MIPS_ADDR = 0x40000000;
 pub const SHF_MIPS_GPREL = 0x10000000;
 pub const SHF_MIPS_LOCAL = 0x04000000;
@@ -2973,14 +2993,11 @@ pub const SHF_MIPS_NAMES = 0x02000000;
 pub const SHF_MIPS_NODUPE = 0x01000000;
 pub const SHF_MIPS_NOSTRIP = 0x08000000;
 pub const SHF_MIPS_STRINGS = 0x80000000;
-pub const SHF_ORDERED = (1 << 30);
-pub const SHF_OS_NONCONFORMING = (1 << 8);
+
 pub const SHF_PARISC_HUGE = 0x40000000;
 pub const SHF_PARISC_SBP = 0x80000000;
 pub const SHF_PARISC_SHORT = 0x20000000;
-pub const SHF_STRINGS = (1 << 5);
-pub const SHF_TLS = (1 << 10);
-pub const SHF_WRITE = (1 << 0);
+
 pub const SHN_ABS = 0xfff1;
 pub const SHN_AFTER = 0xff01;
 pub const SHN_BEFORE = 0xff00;
@@ -2991,45 +3008,69 @@ pub const SHN_HIRESERVE = 0xffff;
 pub const SHN_LOOS = 0xff20;
 pub const SHN_LOPROC = 0xff00;
 pub const SHN_LORESERVE = 0xff00;
+pub const SHN_UNDEF = 0;
+pub const SHN_XINDEX = 0xffff;
+
 pub const SHN_MIPS_ACOMMON = 0xff00;
 pub const SHN_MIPS_DATA = 0xff02;
 pub const SHN_MIPS_SCOMMON = 0xff03;
 pub const SHN_MIPS_SUNDEFINED = 0xff04;
 pub const SHN_MIPS_TEXT = 0xff01;
+
 pub const SHN_PARISC_ANSI_COMMON = 0xff00;
 pub const SHN_PARISC_HUGE_COMMON = 0xff01;
-pub const SHN_UNDEF = 0;
-pub const SHN_XINDEX = 0xffff;
-pub const SHT_ALPHA_DEBUG = 0x70000001;
-pub const SHT_ALPHA_REGINFO = 0x70000002;
-pub const SHT_ARC_ATTRIBUTES = (SHT_LOPROC + 1);
-pub const SHT_ARM_ATTRIBUTES = (SHT_LOPROC + 3);
-pub const SHT_ARM_EXIDX = (SHT_LOPROC + 1);
-pub const SHT_ARM_PREEMPTMAP = (SHT_LOPROC + 2);
+
 pub const SHT_CHECKSUM = 0x6ffffff8;
-pub const SHT_CSKY_ATTRIBUTES = (SHT_LOPROC + 1);
 pub const SHT_DYNAMIC = 6;
 pub const SHT_DYNSYM = 11;
 pub const SHT_FINI_ARRAY = 15;
-pub const SHT_GNU_ATTRIBUTES = 0x6ffffff5;
-pub const SHT_GNU_HASH = 0x6ffffff6;
-pub const SHT_GNU_LIBLIST = 0x6ffffff7;
-pub const SHT_GNU_verdef = 0x6ffffffd;
-pub const SHT_GNU_verneed = 0x6ffffffe;
-pub const SHT_GNU_versym = 0x6fffffff;
 pub const SHT_GROUP = 17;
 pub const SHT_HASH = 5;
 pub const SHT_HIOS = 0x6fffffff;
 pub const SHT_HIPROC = 0x7fffffff;
 pub const SHT_HISUNW = 0x6fffffff;
 pub const SHT_HIUSER = 0x8fffffff;
-pub const SHT_IA_64_EXT = (SHT_LOPROC + 0);
-pub const SHT_IA_64_UNWIND = (SHT_LOPROC + 1);
 pub const SHT_INIT_ARRAY = 14;
 pub const SHT_LOOS = 0x60000000;
 pub const SHT_LOPROC = 0x70000000;
 pub const SHT_LOSUNW = 0x6ffffffa;
 pub const SHT_LOUSER = 0x80000000;
+pub const SHT_NOBITS = 8;
+pub const SHT_NOTE = 7;
+pub const SHT_NULL = 0;
+pub const SHT_NUM = 20;
+pub const SHT_PREINIT_ARRAY = 16;
+pub const SHT_PROGBITS = 1;
+pub const SHT_REL = 9;
+pub const SHT_RELA = 4;
+pub const SHT_RELR = 19;
+pub const SHT_SHLIB = 10;
+pub const SHT_STRTAB = 3;
+pub const SHT_SYMTAB = 2;
+pub const SHT_SYMTAB_SHNDX = 18;
+pub const SHT_X86_64_UNWIND = 0x70000001;
+
+pub const SHT_ALPHA_DEBUG = 0x70000001;
+pub const SHT_ALPHA_REGINFO = 0x70000002;
+
+pub const SHT_ARC_ATTRIBUTES = (SHT_LOPROC + 1);
+
+pub const SHT_ARM_ATTRIBUTES = (SHT_LOPROC + 3);
+pub const SHT_ARM_EXIDX = (SHT_LOPROC + 1);
+pub const SHT_ARM_PREEMPTMAP = (SHT_LOPROC + 2);
+
+pub const SHT_CSKY_ATTRIBUTES = (SHT_LOPROC + 1);
+
+pub const SHT_GNU_ATTRIBUTES = 0x6ffffff5;
+pub const SHT_GNU_HASH = 0x6ffffff6;
+pub const SHT_GNU_LIBLIST = 0x6ffffff7;
+pub const SHT_GNU_verdef = 0x6ffffffd;
+pub const SHT_GNU_verneed = 0x6ffffffe;
+pub const SHT_GNU_versym = 0x6fffffff;
+
+pub const SHT_IA_64_EXT = (SHT_LOPROC + 0);
+pub const SHT_IA_64_UNWIND = (SHT_LOPROC + 1);
+
 pub const SHT_MIPS_ABIFLAGS = 0x7000002a;
 pub const SHT_MIPS_AUXSYM = 0x70000016;
 pub const SHT_MIPS_CONFLICT = 0x70000002;
@@ -3071,27 +3112,17 @@ pub const SHT_MIPS_XHASH = 0x7000002b;
 pub const SHT_MIPS_XLATE = 0x70000024;
 pub const SHT_MIPS_XLATE_DEBUG = 0x70000025;
 pub const SHT_MIPS_XLATE_OLD = 0x70000028;
-pub const SHT_NOBITS = 8;
-pub const SHT_NOTE = 7;
-pub const SHT_NULL = 0;
-pub const SHT_NUM = 20;
+
 pub const SHT_PARISC_DOC = 0x70000002;
 pub const SHT_PARISC_EXT = 0x70000000;
 pub const SHT_PARISC_UNWIND = 0x70000001;
-pub const SHT_PREINIT_ARRAY = 16;
-pub const SHT_PROGBITS = 1;
-pub const SHT_REL = 9;
-pub const SHT_RELA = 4;
-pub const SHT_RELR = 19;
+
 pub const SHT_RISCV_ATTRIBUTES = (SHT_LOPROC + 3);
-pub const SHT_SHLIB = 10;
-pub const SHT_STRTAB = 3;
+
 pub const SHT_SUNW_COMDAT = 0x6ffffffb;
 pub const SHT_SUNW_move = 0x6ffffffa;
 pub const SHT_SUNW_syminfo = 0x6ffffffc;
-pub const SHT_SYMTAB = 2;
-pub const SHT_SYMTAB_SHNDX = 18;
-pub const SHT_X86_64_UNWIND = 0x70000001;
+
 pub const STB_GLOBAL = 1;
 pub const STB_GNU_UNIQUE = 10;
 pub const STB_HIOS = 12;
@@ -3102,21 +3133,29 @@ pub const STB_LOPROC = 13;
 pub const STB_MIPS_SPLIT_COMMON = 13;
 pub const STB_NUM = 3;
 pub const STB_WEAK = 2;
+
 pub const STN_UNDEF = 0;
+
 pub const STO_AARCH64_VARIANT_PCS = 0x80;
+
 pub const STO_ALPHA_NOPV = 0x80;
 pub const STO_ALPHA_STD_GPLOAD = 0x88;
+
 pub const STO_MIPS_DEFAULT = 0x0;
 pub const STO_MIPS_HIDDEN = 0x2;
 pub const STO_MIPS_INTERNAL = 0x1;
 pub const STO_MIPS_PLT = 0x8;
 pub const STO_MIPS_PROTECTED = 0x3;
 pub const STO_MIPS_SC_ALIGN_UNUSED = 0xff;
+
 pub const STO_PPC64_LOCAL_BIT = 5;
 pub const STO_PPC64_LOCAL_MASK = (7 << STO_PPC64_LOCAL_BIT);
+
 pub const STO_RISCV_VARIANT_CC = 0x80;
+
 pub const STT_ARM_16BIT = STT_HIPROC;
 pub const STT_ARM_TFUNC = STT_LOPROC;
+
 pub const STT_COMMON = 5;
 pub const STT_FILE = 4;
 pub const STT_FUNC = 2;
@@ -3134,10 +3173,12 @@ pub const STT_PARISC_MILLICODE = 13;
 pub const STT_SECTION = 3;
 pub const STT_SPARC_REGISTER = 13;
 pub const STT_TLS = 6;
+
 pub const STV_DEFAULT = 0;
 pub const STV_HIDDEN = 2;
 pub const STV_INTERNAL = 1;
 pub const STV_PROTECTED = 3;
+
 pub const SYMINFO_BT_LOWRESERVE = 0xff00;
 pub const SYMINFO_BT_PARENT = 0xfffe;
 pub const SYMINFO_BT_SELF = 0xffff;
@@ -3148,15 +3189,19 @@ pub const SYMINFO_FLG_LAZYLOAD = 0x0008;
 pub const SYMINFO_FLG_PASSTHRU = 0x0002;
 pub const SYMINFO_NONE = 0;
 pub const SYMINFO_NUM = 2;
+
 pub const VER_DEF_CURRENT = 1;
 pub const VER_DEF_NONE = 0;
 pub const VER_DEF_NUM = 2;
+
 pub const VER_FLG_BASE = 0x1;
 pub const VER_FLG_WEAK = 0x2;
+
 pub const VER_NDX_ELIMINATE = 0xff01;
 pub const VER_NDX_GLOBAL = 1;
 pub const VER_NDX_LOCAL = 0;
 pub const VER_NDX_LORESERVE = 0xff00;
+
 pub const VER_NEED_CURRENT = 1;
 pub const VER_NEED_NONE = 0;
 pub const VER_NEED_NUM = 2;
