@@ -1,5 +1,5 @@
 const std = @import("std");
-const Elf = @import("Elf.zig");
+pub const Elf = @import("Elf.zig");
 const testing = std.testing;
 
 comptime {

@@ -1,44 +1,46 @@
-pub const @"386" = @import("386.zig");
-pub const @"68K" = @import("68K.zig");
-pub const Aarch64 = @import("Aarch64.zig");
-pub const Ac = @import("Ac.zig");
-pub const Alpha = @import("Alpha.zig");
-pub const Arc = @import("Arc.zig");
-pub const Arm = @import("Arm.zig");
-pub const Bpf = @import("Bpf.zig");
-pub const Ckcore = @import("Ckcore.zig");
-pub const Cpu32 = @import("Cpu32.zig");
-pub const Cris = @import("Cris.zig");
-pub const Csky = @import("Csky.zig");
-pub const Gnu = @import("Gnu.zig");
-pub const Hp = @import("Hp.zig");
-pub const Ia64 = @import("Ia64.zig");
-pub const LoongArch = @import("LoongArch.zig");
-pub const M32r = @import("M32r.zig");
-pub const Metag = @import("Metag.zig");
-pub const MicroBlaze = @import("MicroBlaze.zig");
-pub const Mips = @import("Mips.zig");
-pub const Mn10300 = @import("Mn10300.zig");
-pub const Nds32 = @import("Nds32.zig");
-pub const Nios2 = @import("Nios2.zig");
-pub const Or1k = @import("Or1k.zig");
-pub const Parisc = @import("Parisc.zig");
-pub const PowerPc = @import("PowerPc.zig");
-pub const PowerPc64 = @import("PowerPc64.zig");
-pub const RiscV = @import("RiscV.zig");
-pub const S390 = @import("S390.zig");
-pub const Sgi = @import("Sgi.zig");
-pub const Sh = @import("Sh.zig");
-pub const Sparc = @import("Sparc.zig");
-pub const Sunw = @import("Sunw.zig");
-pub const TileGx = @import("TileGx.zig");
-pub const TilePro = @import("TilePro.zig");
-pub const X86_64 = @import("X86_64.zig");
+const std = @import("std");
+const builtin = std.builtin;
 pub const Elf = @This();
 pub const elf = @import("elf.zig");
 
-const std = @import("std");
-const builtin = std.builtin;
+pub const Arch = struct {
+    pub const @"386" = @import("arch/386.zig");
+    pub const @"68K" = @import("arch/68K.zig");
+    pub const Aarch64 = @import("arch/Aarch64.zig");
+    pub const Ac = @import("arch/Ac.zig");
+    pub const Alpha = @import("arch/Alpha.zig");
+    pub const Arc = @import("arch/Arc.zig");
+    pub const Arm = @import("arch/Arm.zig");
+    pub const Bpf = @import("arch/Bpf.zig");
+    pub const Ckcore = @import("arch/Ckcore.zig");
+    pub const Cpu32 = @import("arch/Cpu32.zig");
+    pub const Cris = @import("arch/Cris.zig");
+    pub const Csky = @import("arch/Csky.zig");
+    pub const Gnu = @import("arch/Gnu.zig");
+    pub const Hp = @import("arch/Hp.zig");
+    pub const Ia64 = @import("arch/Ia64.zig");
+    pub const LoongArch = @import("arch/LoongArch.zig");
+    pub const M32r = @import("arch/M32r.zig");
+    pub const Metag = @import("arch/Metag.zig");
+    pub const MicroBlaze = @import("arch/MicroBlaze.zig");
+    pub const Mips = @import("arch/Mips.zig");
+    pub const Mn10300 = @import("arch/Mn10300.zig");
+    pub const Nds32 = @import("arch/Nds32.zig");
+    pub const Nios2 = @import("arch/Nios2.zig");
+    pub const Or1k = @import("arch/Or1k.zig");
+    pub const Parisc = @import("arch/Parisc.zig");
+    pub const PowerPc = @import("arch/PowerPc.zig");
+    pub const PowerPc64 = @import("arch/PowerPc64.zig");
+    pub const RiscV = @import("arch/RiscV.zig");
+    pub const S390 = @import("arch/S390.zig");
+    pub const Sgi = @import("arch/Sgi.zig");
+    pub const Sh = @import("arch/Sh.zig");
+    pub const Sparc = @import("arch/Sparc.zig");
+    pub const Sunw = @import("arch/Sunw.zig");
+    pub const TileGx = @import("arch/TileGx.zig");
+    pub const TilePro = @import("arch/TilePro.zig");
+    pub const X86_64 = @import("arch/X86_64.zig");
+};
 
 pub const Symbol = struct {
     pub const Type = enum(u8) {
@@ -199,6 +201,32 @@ pub const Note = struct {
     pub const os_solaris2 = elf.ELF_NOTE_OS_SOLARIS2;
     pub const pagesize_hint = elf.ELF_NOTE_PAGESIZE_HINT;
     pub const solaris = elf.ELF_NOTE_SOLARIS;
+
+    pub const Type = enum(u32) {
+        asrs = elf.NT_ASRS,
+        auxv = elf.NT_AUXV,
+        file = elf.NT_FILE,
+        fpregset = elf.NT_FPREGSET,
+        lwpsinfo = elf.NT_LWPSINFO,
+        lwpstatus = elf.NT_LWPSTATUS,
+        platform = elf.NT_PLATFORM,
+        prcred = elf.NT_PRCRED,
+        prfpreg = elf.NT_PRFPREG,
+        prfpxreg = elf.NT_PRFPXREG,
+        prpsinfo = elf.NT_PRPSINFO,
+        prstatus = elf.NT_PRSTATUS,
+        prxfpreg = elf.NT_PRXFPREG,
+        prxreg = elf.NT_PRXREG,
+        psinfo = elf.NT_PSINFO,
+        pstatus = elf.NT_PSTATUS,
+        siginfo = elf.NT_SIGINFO,
+        taskstruct = elf.NT_TASKSTRUCT,
+        utsname = elf.NT_UTSNAME,
+        version = elf.NT_VERSION,
+        vmcoredd = elf.NT_VMCOREDD,
+        gwindows = elf.NT_GWINDOWS,
+        _,
+    };
 };
 
 pub const Machine = enum(u16) {
@@ -386,32 +414,6 @@ pub const Machine = enum(u16) {
     xtensa = elf.EM_XTENSA,
     z80 = elf.EM_Z80,
     zsp = elf.EM_ZSP,
-    _,
-};
-
-pub const NoteType = enum(u32) {
-    asrs = elf.NT_ASRS,
-    auxv = elf.NT_AUXV,
-    file = elf.NT_FILE,
-    fpregset = elf.NT_FPREGSET,
-    lwpsinfo = elf.NT_LWPSINFO,
-    lwpstatus = elf.NT_LWPSTATUS,
-    platform = elf.NT_PLATFORM,
-    prcred = elf.NT_PRCRED,
-    prfpreg = elf.NT_PRFPREG,
-    prfpxreg = elf.NT_PRFPXREG,
-    prpsinfo = elf.NT_PRPSINFO,
-    prstatus = elf.NT_PRSTATUS,
-    prxfpreg = elf.NT_PRXFPREG,
-    prxreg = elf.NT_PRXREG,
-    psinfo = elf.NT_PSINFO,
-    pstatus = elf.NT_PSTATUS,
-    siginfo = elf.NT_SIGINFO,
-    taskstruct = elf.NT_TASKSTRUCT,
-    utsname = elf.NT_UTSNAME,
-    version = elf.NT_VERSION,
-    vmcoredd = elf.NT_VMCOREDD,
-    gwindows = elf.NT_GWINDOWS,
     _,
 };
 

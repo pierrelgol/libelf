@@ -1,5 +1,5 @@
 const std = @import("std");
-const elf = @import("elf.zig");
+const elf = @import("../elf.zig");
 const Gnu = @This();
 
 pub const Property = enum(u32) {
