@@ -1,0 +1,36 @@
+const std = @import("std");
+const elf = @import("../elf.zig");
+const MicroBlaze = @This();
+
+pub const Relocation = enum(u8) {
+    @"32" = elf.R_MICROBLAZE_32,
+    @"32_lo" = elf.R_MICROBLAZE_32_LO,
+    @"32_pcrel" = elf.R_MICROBLAZE_32_PCREL,
+    @"32_pcrel_lo" = elf.R_MICROBLAZE_32_PCREL_LO,
+    @"32_sym_op_sym" = elf.R_MICROBLAZE_32_SYM_OP_SYM,
+    @"64" = elf.R_MICROBLAZE_64,
+    @"64_none" = elf.R_MICROBLAZE_64_NONE,
+    @"64_pcrel" = elf.R_MICROBLAZE_64_PCREL,
+    copy = elf.R_MICROBLAZE_COPY,
+    glob_dat = elf.R_MICROBLAZE_GLOB_DAT,
+    gnu_vtentry = elf.R_MICROBLAZE_GNU_VTENTRY,
+    gnu_vtinherit = elf.R_MICROBLAZE_GNU_VTINHERIT,
+    gotoff_32 = elf.R_MICROBLAZE_GOTOFF_32,
+    gotoff_64 = elf.R_MICROBLAZE_GOTOFF_64,
+    gotpc_64 = elf.R_MICROBLAZE_GOTPC_64,
+    got_64 = elf.R_MICROBLAZE_GOT_64,
+    jump_slot = elf.R_MICROBLAZE_JUMP_SLOT,
+    none = elf.R_MICROBLAZE_NONE,
+    plt_64 = elf.R_MICROBLAZE_PLT_64,
+    rel = elf.R_MICROBLAZE_REL,
+    sro32 = elf.R_MICROBLAZE_SRO32,
+    srw32 = elf.R_MICROBLAZE_SRW32,
+    tls = elf.R_MICROBLAZE_TLS,
+    tlsdtpmod32 = elf.R_MICROBLAZE_TLSDTPMOD32,
+    tlsdtprel32 = elf.R_MICROBLAZE_TLSDTPREL32,
+    tlsdtprel64 = elf.R_MICROBLAZE_TLSDTPREL64,
+    tlsgd = elf.R_MICROBLAZE_TLSGD,
+    tlsgottprel32 = elf.R_MICROBLAZE_TLSGOTTPREL32,
+    tlsld = elf.R_MICROBLAZE_TLSLD,
+    tlstprel32 = elf.R_MICROBLAZE_TLSTPREL32,
+};
